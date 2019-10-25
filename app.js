@@ -26,10 +26,6 @@ if (environment !== 'production') {
 
 // ROUTE
 app.use('/api/v1', routes(router))
-// TEST ROUTE!!!
-app.use('/', (req, res) => {
-    res.status(200).send("Working API from Node to React! :) this will be the login page!")
-})
 
 app.listen(`${stage.port}`, () => {
     console.log(`Server now listening at http://localhost:${stage.port}`);

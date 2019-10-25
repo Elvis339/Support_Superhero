@@ -1,3 +1,5 @@
+require('dotenv').config(); // Sets up dotenv as soon as our application starts
+
 const
     fs = require('fs'),
     chalk = require('chalk'),
