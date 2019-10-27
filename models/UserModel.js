@@ -50,17 +50,17 @@ const userSchema = new mongoose.Schema({
 })
 
 // Method for showing the right object
-// userSchema.methods.toJSON = function () {
-//     const user = this
-//     const userObject = user.toObject()
+userSchema.methods.toJSON = function () {
+    const user = this
+    const userObject = user.toObject()
 
-//     delete userObject._id
-//     delete userObject.password
-//     delete userObject.tokens
-//     delete userObject.avatar
+    
+    delete userObject.password
+    delete userObject.tokens
+    delete userObject.avatar
 
-//     return userObject
-// }
+    return userObject
+}
 
 // Generate auth token
 userSchema.methods.generateAuthToken = async function () {

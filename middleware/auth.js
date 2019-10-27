@@ -18,15 +18,15 @@ const auth = async (req, res, next) => {
             req.user = user
             next()
         } catch (error) {
-            res.status(500).send({
-                error: `There was an error ${error}`,
-                status: 500
+            res.status(401).send({
+                error: `Authentication error. Token required.`,
+                status: 401
             })
         }
     } else {
-        res.status(401).send({
-            error: `Authentication error. Token required.`,
-            status: 401
+        res.status(500).send({
+            error: `There was an error ${error}`,
+            status: 500
         })
     }
 }

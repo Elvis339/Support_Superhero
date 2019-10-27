@@ -10,6 +10,7 @@ require('../db/database')
 
 const
   User = require('../models/UserModel')
+  userData = {}
 
 module.exports = {
   add: async (req, res) => {
@@ -32,7 +33,9 @@ module.exports = {
     try {
       const user = await User.findByCredentials(req.body.email, req.body.password)
       const token = await user.generateAuthToken()
-      res.send({ user, token })
+      userData.name = user.name
+      userData.email = user.email
+      res.send({ token })
     } catch (error) {
       res.status(400).send({
         message: 'Unable to login, contact support!',
@@ -42,12 +45,11 @@ module.exports = {
     }
   },
 
-  // Dev ONLY // 
-  getAll: (req, res, next) => {
+
+  getHome: async (req, res, next) => {
     try {
-      res.send({
-        message: 'Protect dev route :)'
-      })
+      const user = await User.find({ email: userData.email })
+      res.send(user)
     } catch (error) {
       res.status(500).send(error.toString())
     }

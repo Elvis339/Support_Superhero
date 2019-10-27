@@ -5,7 +5,7 @@ const
 module.exports = (router) => {
   router.route('/users')
     .post(controller.add)
-    .get(auth, controller.getAll);
+    .get(auth, controller.getHome);
 
   router.route('/login')
     .post(controller.login)
