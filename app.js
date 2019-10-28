@@ -11,7 +11,8 @@ const app = express();
 const router = express.Router();
 
 const environment = process.env.NODE_ENV; // development
-const stage = require('./config')[environment];
+// const stage = require('./config')[environment];
+const port = process.env.PORT || 8000
 
 // Middlewares
 app.use(bodyParser.json());
@@ -27,8 +28,8 @@ if (environment !== 'production') {
 // ROUTE
 app.use('/api/v1', routes(router))
 
-app.listen(`${stage.port}`, () => {
-    console.log(`Server now listening at http://localhost:${stage.port}`);
+app.listen(port, () => {
+    console.log(`Server now listening at http://localhost:${port}`);
 });
 
 module.exports = app;
