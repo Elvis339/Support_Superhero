@@ -12,7 +12,7 @@ const router = express.Router();
 
 const environment = process.env.NODE_ENV; // development
 // const stage = require('./config')[environment];
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 3001
 
 // Middlewares
 app.use(bodyParser.json());

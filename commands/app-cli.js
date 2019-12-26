@@ -27,14 +27,4 @@ yargs.version('1.0.0')
             }
         }
     })
-    .command({
-        command: "state",
-        describe: "Returns in which state the app is currenctly running",
-        handler(argv) {
-            if (process.getegid()) {
-                return commandos.getState()
-            }
-            commandos.chalkStates.error("Server needs to be up and running!")
-        }
-    })
     .alias('h', 'help').argv

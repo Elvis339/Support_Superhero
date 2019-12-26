@@ -39,8 +39,4 @@ module.exports = {
             fs.writeFileSync(path, data, { encoding: 'utf-8' }) // write it down
         }
     },
-
-    getState: () => {
-        return chalkStates.success(process.env.APP_STATE)
-    }
 }

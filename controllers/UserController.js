@@ -10,7 +10,6 @@ require('../db/database')
 
 const
   User = require('../models/UserModel')
-userData = {}
 
 module.exports = {
   add: async (req, res) => {
@@ -22,9 +21,8 @@ module.exports = {
       res.status(201).send({ user, token })
     } catch (error) {
       res.status(400).send({
-        message: 'Check the fields',
+        err: error.toString(),
         status: 400,
-        error
       })
     }
   },
@@ -33,14 +31,12 @@ module.exports = {
     try {
       const user = await User.findByCredentials(req.body.email, req.body.password)
       const token = await user.generateAuthToken()
-      userData.name = user.name
-      userData.email = user.email
       res.send({ token })
     } catch (error) {
-      res.status(400).send({
+      res.status(401).send({
         message: 'Unable to login, contact support!',
-        status: 400,
-        error: error.toString()
+        status: 401,
+        err: error
       })
     }
   },
@@ -48,10 +44,36 @@ module.exports = {
 
   getHome: async (req, res, next) => {
     try {
-      const user = await User.find({ email: userData.email })
-      res.status(200).send(user)
+      res.status(200).send({ message: "OK!" })
     } catch (error) {
-      res.status(500).send(error.toString())
+      res.status(500).send({
+        message: "Server error",
+        err: error.toString(),
+        status: 500,
+      })
+    }
+  },
+
+  searchUsers: async (req, res, next) => {
+    try {
+      let query = req.body.query
+      const user = await User.findOne({ email: query })
+      
+      if (!user) {
+        res.status(404).send({
+          message: "User not found, try another email"
+        })
+      }
+
+      res.status(200).send({
+        user
+      })
+    } catch (error) {
+      res.status(500).send({
+        message: "Server error",
+        err: error.toString(),
+        status: 500
+      })
     }
   },
 
@@ -75,7 +97,11 @@ module.exports = {
       await req.user.save()
       res.send(req.user)
     } catch (error) {
-      res.sendStatus(500).send(error.toString())
+      res.sendStatus(405).send({
+        message: "Not allowed!",
+        err: error.toString(),
+        status: 405
+      })
     }
   }
 }

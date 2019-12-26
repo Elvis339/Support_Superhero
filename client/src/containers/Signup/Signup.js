@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { getJwt } from '../../helpers/jwt'
+import Register from '../../components/Register/Register.component'
 import axios from 'axios'
 
 class Signup extends Component {
@@ -16,9 +18,9 @@ class Signup extends Component {
     }
 
     componentDidMount() {
-        if (window.localStorage.getItem('token')) {
-            this.props.history.push('/login')
-        }
+        const isAuth = getJwt()
+
+        return isAuth ? this.props.history.push('/login') : console.log('... =>')
     }
 
     validate() {
@@ -45,28 +47,20 @@ class Signup extends Component {
                 password: this.state.password
             }).then(res => {
                 localStorage.setItem('token', res.data.token)
-                this.props.history.push('/home')
+                this.props.history.push('/')
             }).catch(err => console.log(err))
         }
     }
 
     render() {
         return (
-            <div>
-                <h1>Sign Up</h1>
-                <form onSubmit={e => this.submit(e)}>
-                    <label htmlFor="name">Name</label>
-                    <input type="text" name="name" id="name" onChange={e => this.change(e)} value={this.state.name} />
-
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name="email" id="email" onChange={e => this.change(e)} value={this.state.email} />
-
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" onChange={e => this.change(e)} value={this.state.password} />
-
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
+            <Register 
+                submit={e => this.submit(e)}
+                name={this.state.name}
+                change={e => this.change(e)}
+                email={this.state.email}
+                password={this.state.password}
+            />
         )
     }
 }

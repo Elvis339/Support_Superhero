@@ -25,7 +25,7 @@ const auth = async (req, res, next) => {
         }
     } else {
         res.status(500).send({
-            error: `There was an error ${error}`,
+            error: 'Server error',
             status: 500
         })
     }

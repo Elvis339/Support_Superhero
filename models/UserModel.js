@@ -3,9 +3,7 @@ const
     validator = require('validator'),
     bcrypt = require('bcrypt'),
     jwt = require('jsonwebtoken'),
-    environment = process.env.NODE_ENV, 
-    stage = require('../config')[environment];
-
+    config = require('../config');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -28,7 +26,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength: 7,
+        minlength: 3,
         trim: true,
         validate(value) {
             if (value.toLowerCase().includes('password')) {
@@ -95,7 +93,7 @@ userSchema.pre('save', async function (next) {
     const user = this
 
     if (user.isModified('password')) {
-        user.password = await bcrypt.hash(user.password, stage.saltingRounds)
+        user.password = await bcrypt.hash(user.password, config.development.saltingRounds)
     }
 
     next()

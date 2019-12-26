@@ -16,4 +16,8 @@ module.exports = (router) => {
   // Edit my profile
   router.route('/me')
     .patch(auth, controller.editMe)
+
+  // Search
+  router.route('/search')
+    .post(controller.searchUsers)
 };

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { getJwt } from '../helpers/jwt'
+import { getJwt } from '../../helpers/jwt'
 import axios from 'axios'
 
 
@@ -9,7 +9,7 @@ class AuthenticatedComponent extends Component {
         super(props)
 
         this.state = {
-            user: undefined
+            user: null
         }
     }
 
@@ -30,7 +30,6 @@ class AuthenticatedComponent extends Component {
             })
         })
         .catch(err => {
-            console.log(err)
             localStorage.removeItem('token')
             this.props.history.push('/login')
         })
@@ -38,7 +37,7 @@ class AuthenticatedComponent extends Component {
 
 
     render() {
-        if(this.state.user === undefined) {
+        if(this.state.user === null) {
             return (
                 <div>
                     <h1>Loading...</h1>
