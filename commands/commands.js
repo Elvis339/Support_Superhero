@@ -3,7 +3,8 @@ require('dotenv').config(); // Sets up dotenv as soon as our application starts
 const
     fs = require('fs'),
     chalk = require('chalk'),
-    log = console.log
+    axios = require('axios'),
+    log = console.log;
 
 let chalkStates = {
     error: (message) => { log(chalk.inverse.red(message)) },
@@ -39,4 +40,15 @@ module.exports = {
             fs.writeFileSync(path, data, { encoding: 'utf-8' }) // write it down
         }
     },
+
+    fetchJoke: async () => {
+        const API_URL = 'http://api.icndb.com/jokes/random'
+
+        try {
+            const response = await axios.get(API_URL)
+            return chalkStates.success(response.data.value.joke)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }

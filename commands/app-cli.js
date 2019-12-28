@@ -26,5 +26,11 @@ yargs.version('1.0.0')
                     commandos.chalkStates.error("Invalid argument, try prod or dev")
             }
         }
+    }).command({
+        command: 'joke',
+        describe: 'Have a little fun :)',
+        handler(argv) {
+            return commandos.fetchJoke()
+        }
     })
     .alias('h', 'help').argv
