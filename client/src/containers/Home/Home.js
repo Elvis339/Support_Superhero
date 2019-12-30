@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Search from '../../components/Search/Search'
+import Layout from '../../components/Layout/Layout'
 
 class Home extends Component {
     state = {
@@ -24,12 +25,14 @@ class Home extends Component {
 
     render() {
         return (
-            <Search
-                submit={this.search} 
-                value={this.state.value}
-                show={this.state.button}
-                query={e => this.handleChange(e)}
-            />
+            <Layout>
+                <Search
+                    submit={this.search}
+                    value={this.state.value}
+                    show={this.state.button}
+                    query={e => this.handleChange(e)}
+                />
+            </Layout>
         )
     }
 }

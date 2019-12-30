@@ -1,13 +1,5 @@
 require('../db/database')
 
-// Only for autocomplete //
-// const express = require('express')
-// const app = express()
-// const router = express.Router()
-// router.get('/', (req, res) => {
-//   res.s
-// })
-
 const
   User = require('../models/UserModel')
 
@@ -59,20 +51,14 @@ module.exports = {
       let query = req.body.query
       const user = await User.findOne({ email: query })
       
-      if (!user) {
-        res.status(404).send({
-          message: "User not found, try another email"
-        })
-      }
+      if (!user) throw new Error("User not found!")
 
-      res.status(200).send({
-        user
-      })
+      res.status(200).send({ user })
     } catch (error) {
-      res.status(500).send({
-        message: "Server error",
+      res.status(404).send({
+        message: "User not found",
         err: error.toString(),
-        status: 500
+        status: 404
       })
     }
   },
