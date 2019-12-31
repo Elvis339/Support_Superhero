@@ -1,14 +1,15 @@
 import React from 'react';
-
+import Container from '@material-ui/core/Container/Container'
+import PrimarySearchAppBar from '../UI/Navbar/Navbar'
 import Aux from '../../hoc/Aux';
-import classes from './Layout.css';
+// import classes from './Layout.css';
 
 const layout = ( props ) => (
     <Aux>
-        <div>Toolbar, SideDrawer, Backdrop</div>
-        <main className={classes.Content}>
+        <PrimarySearchAppBar />
+        <Container>
             {props.children}
-        </main>
+        </Container>
     </Aux>
 );
 

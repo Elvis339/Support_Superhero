@@ -6,7 +6,6 @@ module.exports = (router) => {
   // Register
   router.route('/users')
     .post(controller.add)
-    // Home
     .get(auth, controller.getHome)
 
   // Login
@@ -15,9 +14,6 @@ module.exports = (router) => {
 
   // Edit my profile
   router.route('/me')
+    .get(auth)
     .patch(auth, controller.editMe)
-
-  // Search
-  router.route('/search')
-    .post(controller.searchUsers)
 };

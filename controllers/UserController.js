@@ -33,10 +33,10 @@ module.exports = {
     }
   },
 
-
   getHome: async (req, res, next) => {
     try {
-      res.status(200).send({ message: "OK!" })
+      const { email, name } = req.user
+      res.status(200).send({ email, name })
     } catch (error) {
       res.status(500).send({
         message: "Server error",
@@ -46,20 +46,12 @@ module.exports = {
     }
   },
 
-  searchUsers: async (req, res, next) => {
-    try {
-      let query = req.body.query
-      const user = await User.findOne({ email: query })
-      
-      if (!user) throw new Error("User not found!")
 
-      res.status(200).send({ user })
+  getMyProfile: async (req, res, next) => {
+    try {
+      res.send({ user: req.user })
     } catch (error) {
-      res.status(404).send({
-        message: "User not found",
-        err: error.toString(),
-        status: 404
-      })
+      res.status(400).send({ message: "Bad request" })
     }
   },
 
