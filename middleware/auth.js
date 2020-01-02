@@ -24,9 +24,9 @@ const auth = async (req, res, next) => {
             })
         }
     } else {
-        res.status(500).send({
-            error: 'Server error',
-            status: 500
+        res.status(403).send({
+            error: 'Not authorized',
+            status: 403
         })
     }
 }

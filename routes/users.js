@@ -14,6 +14,6 @@ module.exports = (router) => {
 
   // Edit my profile
   router.route('/me')
-    .get(auth)
+    .get(auth, controller.getMyProfile)
     .patch(auth, controller.editMe)
 };

@@ -12,9 +12,10 @@ module.exports = {
       const token = await user.generateAuthToken()
       res.status(201).send({ user, token })
     } catch (error) {
-      res.status(400).send({
+      res.status(406).send({
         err: error.toString(),
-        status: 400,
+        message: "Not acceptable",
+        status: 406,
       })
     }
   },
@@ -25,9 +26,9 @@ module.exports = {
       const token = await user.generateAuthToken()
       res.send({ token })
     } catch (error) {
-      res.status(401).send({
+      res.status(500).send({
         message: 'Unable to login, contact support!',
-        status: 401,
+        status: 500,
         err: error
       })
     }
@@ -51,7 +52,11 @@ module.exports = {
     try {
       res.send({ user: req.user })
     } catch (error) {
-      res.status(400).send({ message: "Bad request" })
+      res.status(503).send({
+        message: "Server error, contact support.",
+        err: error.toString(),
+        status: 503,
+      })
     }
   },
 
