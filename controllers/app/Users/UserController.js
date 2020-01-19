@@ -1,10 +1,10 @@
-require('../db/database')
+require('../../../db/database')
 
 const
-  User = require('../models/UserModel')
+  User = require('../../../models/UserModel')
 
 module.exports = {
-  add: async (req, res) => {
+  addUser: async (req, res) => {
     const user = new User(req.body)
 
     try {
@@ -24,38 +24,24 @@ module.exports = {
     try {
       const user = await User.findByCredentials(req.body.email, req.body.password)
       const token = await user.generateAuthToken()
-      res.send({ token })
+      res.status(200).send({ token })
     } catch (error) {
-      res.status(500).send({
+      res.status(403).send({
         message: 'Unable to login, contact support!',
-        status: 500,
+        status: 403,
         err: error
       })
     }
   },
 
-  getHome: async (req, res, next) => {
+  validate: async (req, res) => {
     try {
-      const { email, name } = req.user
-      res.status(200).send({ email, name })
+      res.status(200).send({ user: req.user })
     } catch (error) {
       res.status(500).send({
         message: "Server error",
         err: error.toString(),
         status: 500,
-      })
-    }
-  },
-
-
-  getMyProfile: async (req, res, next) => {
-    try {
-      res.send({ user: req.user })
-    } catch (error) {
-      res.status(503).send({
-        message: "Server error, contact support.",
-        err: error.toString(),
-        status: 503,
       })
     }
   },

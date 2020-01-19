@@ -1,12 +1,12 @@
 const 
-  controller = require('../controllers/UserController'),
-  auth = require('../middleware/auth');
+  controller = require('../../controllers/app/Users/UserController'),
+  auth = require('../../middleware/auth');
 
 module.exports = (router) => {
   // Register
   router.route('/users')
-    .post(controller.add)
-    .get(auth, controller.getHome)
+    .post(controller.addUser)
+    .get(auth, controller.validate) // user
 
   // Login
   router.route('/login')
@@ -14,6 +14,5 @@ module.exports = (router) => {
 
   // Edit my profile
   router.route('/me')
-    .get(auth, controller.getMyProfile)
     .patch(auth, controller.editMe)
 };

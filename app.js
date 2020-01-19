@@ -19,14 +19,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(logger('dev'));
 
-// Morgan Loger based on the prod or dev flag
-if (environment !== 'production') {
-    app.use(logger('dev'));
+if (environment === 'production') {
+    app.use('/api/v1', routes(router))
+    app.get('/*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    });
+} else {
+    app.use('/api/v1', routes(router))
 }
-
-// ROUTE
-app.use('/api/v1', routes(router))
 
 app.listen(port, () => {
     console.log(`Server now listening at http://localhost:${port}`);
