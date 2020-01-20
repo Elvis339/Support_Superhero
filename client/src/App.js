@@ -13,10 +13,10 @@ function App() {
     <BrowserRouter>
       <Switch>
         {/* <Route path={'/register'} exact component={Signup} /> */}
-        <Route path={'/login'} exact component={AuthenticationController} />
-        <AuthController>
+        <Route path={'/'} exact component={Dashboard} />
+        {/* <AuthController>
           <Route path={'/'} exact component={Dashboard} />
-        </AuthController>
+        </AuthController> */}
       </Switch>
     </BrowserRouter>
   );
