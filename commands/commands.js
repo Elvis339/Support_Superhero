@@ -48,7 +48,7 @@ module.exports = {
             const response = await axios.get(API_URL)
             return chalkStates.success(response.data.value.joke)
         } catch (error) {
-            console.log(error)
+            chalkStates.error(error)
         }
     }
 }

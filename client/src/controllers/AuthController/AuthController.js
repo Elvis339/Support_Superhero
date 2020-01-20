@@ -1,16 +1,13 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-import { getJwt } from '../../helpers/jwt'
-import axios from 'axios'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import axios from 'axios';
+import { getJwt } from '../../helpers/jwt';
+import Aux from '../../components/Hoc/Aux';
 
 
 class AuthenticatedComponent extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            user: null
-        }
+    state = {
+        user: null,
     }
 
     componentDidMount() {
@@ -45,9 +42,9 @@ class AuthenticatedComponent extends Component {
             )
         }
         return (
-            <div>
+            <Aux>
                 {this.props.children}
-            </div>
+            </Aux>
         )
     }
 }

@@ -1,3 +1,1 @@
-export const getJwt = () => {
-    return localStorage.getItem('token')
-}
+export const getJwt = () => localStorage.getItem('token')

@@ -1,18 +1,10 @@
-require('../db/database')
-
-// Only for autocomplete //
-// const express = require('express')
-// const app = express()
-// const router = express.Router()
-// router.get('/', (req, res) => {
-//   res.s
-// })
+require('../../../db/database')
 
 const
-  User = require('../models/UserModel')
+  User = require('../../../models/UserModel')
 
 module.exports = {
-  add: async (req, res) => {
+  addUser: async (req, res) => {
     const user = new User(req.body)
 
     try {
@@ -20,9 +12,10 @@ module.exports = {
       const token = await user.generateAuthToken()
       res.status(201).send({ user, token })
     } catch (error) {
-      res.status(400).send({
+      res.status(406).send({
         err: error.toString(),
-        status: 400,
+        message: "Not acceptable",
+        status: 406,
       })
     }
   },
@@ -31,48 +24,24 @@ module.exports = {
     try {
       const user = await User.findByCredentials(req.body.email, req.body.password)
       const token = await user.generateAuthToken()
-      res.send({ token })
+      res.status(200).send({ token })
     } catch (error) {
-      res.status(401).send({
+      res.status(403).send({
         message: 'Unable to login, contact support!',
-        status: 401,
+        status: 403,
         err: error
       })
     }
   },
 
-
-  getHome: async (req, res, next) => {
+  validate: async (req, res) => {
     try {
-      res.status(200).send({ message: "OK!" })
+      res.status(200).send({ user: req.user })
     } catch (error) {
       res.status(500).send({
         message: "Server error",
         err: error.toString(),
         status: 500,
-      })
-    }
-  },
-
-  searchUsers: async (req, res, next) => {
-    try {
-      let query = req.body.query
-      const user = await User.findOne({ email: query })
-      
-      if (!user) {
-        res.status(404).send({
-          message: "User not found, try another email"
-        })
-      }
-
-      res.status(200).send({
-        user
-      })
-    } catch (error) {
-      res.status(500).send({
-        message: "Server error",
-        err: error.toString(),
-        status: 500
       })
     }
   },
