@@ -1,9 +1,8 @@
 const
-    mongoose = require('mongoose'),
-    config = require('../config');
+    mongoose = require('mongoose');
 
 const modelSchema = new mongoose.Schema({
-    name: {
+    title: {
         type: String,
         required: true,
         trim: true
