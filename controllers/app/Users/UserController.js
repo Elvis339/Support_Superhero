@@ -41,7 +41,7 @@ module.exports = {
       if (!user) throw new Error('No user found, something reeeaaallly went wrong.');
       user.tokens = []
       await user.save()
-      res.status(200).send(user)
+      res.status(200).send()
     } catch (error) {
       res.status(500).send({
         message: 'Contact support!',

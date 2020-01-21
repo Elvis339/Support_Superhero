@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown, Form, Button, FormControl } from 'react-bootstrap';
+import logout from '../../../helpers/logoff';
+import helpers from '../../../helpers/helpers';
+
+let modules = [
+    'shepherd',
+    'project',
+    'task',
+    'discussion',
+    'notes',
+    'expenses',
+    'activity',
+    'payments'
+]
 
 const navigation = props => (
     <Navbar bg="light" expand="lg">
@@ -12,14 +25,9 @@ const navigation = props => (
             <Nav className="mr-auto">
                 <Link className='nav-link' to='/add'>Add article</Link>
                 <Link className='nav-link' to='/me'>My profile</Link>
-                <Link className='nav-link' to='/logout'>Log out</Link>
+                <Link className='nav-link' to='/login' onClick={logout}>Log out</Link>
                 <NavDropdown title="Select filter" id="basic-nav-dropdown">
-                    <NavDropdown.Item name='filter' onClick={props.handleClick}>Shepherd</NavDropdown.Item>
-                    <NavDropdown.Item name='filter' onClick={props.handleClick}>Project</NavDropdown.Item>
-                    <NavDropdown.Item name='filter' onClick={props.handleClick}>Task</NavDropdown.Item>
-                    <NavDropdown.Item name='filter' onClick={props.handleClick}>Discussion</NavDropdown.Item>
-                    <NavDropdown.Item name='filter' onClick={props.handleClick}>Notes</NavDropdown.Item>
-                    <NavDropdown.Item name='filter' onClick={props.handleClick}>Payments</NavDropdown.Item>
+                { modules.map((module, index) => <NavDropdown.Item key={index} name='filter' onClick={props.handleClick}>{helpers.capitalize(module)}</NavDropdown.Item>) }
                 </NavDropdown>
             </Nav>
             <Form inline>

@@ -10,7 +10,7 @@ class Resource extends Component {
     };
 
     componentDidMount() {
-        axios.get(this.props.path, { headers: { "Authorization": `Bearer: ${getJwt()}}` }}).then(res => {
+        axios.get(this.props.path, { headers: { "Authorization": `Bearer: ${getJwt()}` }}).then(res => {
             this.setState({
                 payload: res.data,
                 loading: false

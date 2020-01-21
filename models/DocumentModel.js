@@ -4,15 +4,25 @@ const
 const modelSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true, 
+        required: true,
     },
     category: {
+        enum: [
+            'shepherd',
+            'project',
+            'task',
+            'discussion',
+            'notes',
+            'expenses',
+            'activity',
+            'payments'
+        ],
         type: String,
         required: true,
     },
     body: {
         type: String,
-        required: true, 
+        required: true,
         trim: true,
     },
     created_by: {

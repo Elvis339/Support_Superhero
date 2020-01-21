@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Aux from '../../components/Hoc/Aux';
 import Navigation from '../../components/Layout/Navigation/Navigation';
 import Dashboard from '../../components/Dashboard/Dashboard';
@@ -11,8 +11,10 @@ class DashboardController extends Component {
     };
 
     state = {
-        filter: 'all',
+        filter: 'notes',
         search: '',
+        loading: true,
+        payload: []
     };
 
 
@@ -21,31 +23,32 @@ class DashboardController extends Component {
             this.setState({
                 [e.target.name]: String(e.target.textContent).toLocaleLowerCase()
             })
-        } else {
-            this.setState({
-                [e.target.name]: String(e.target.value).toLocaleLowerCase()
-            })
+            return
         }
+        return this.setState({
+            [e.target.name]: String(e.target.value).toLocaleLowerCase()
+        })
     };
 
     render() {
         return (
-            <Aux>
+            <Fragment>
                 <Navigation
                     handleChange={e => this.handler(e, 'change')}
                     handleClick={e => this.handler(e, 'click')}
                 />
                 {/* TODO: treba da renderuje u zavisnosti od filtera, sto znaci da ako je filter shepherd onda da ode u bazu i nadje sve sto matchuje. */}
                 <Resource
+
                     path={`/api/v1/documents?filter=${this.state.filter}`}
                     render={
                         data => {
                             if (typeof (data.payload) !== "undefined") {
                                 return data.payload.map((val, index) => {
                                     return (
-                                        <Aux key={index}>
+                                        <Fragment key={index}>
                                             Hello
-                                        </Aux>
+                                        </Fragment>
                                     )
                                 })
                             }
@@ -53,7 +56,7 @@ class DashboardController extends Component {
                         }
                     }
                 />
-            </Aux>
+            </Fragment>
         )
     }
 

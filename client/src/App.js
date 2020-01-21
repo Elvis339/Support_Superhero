@@ -5,9 +5,6 @@ import AuthenticationController from './controllers/AuthenticationController/Aut
 import DashboardController from './controllers/DashboardController/DashboardController';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// import 'react-quill/dist/quill.snow.css';
-// import Editor from './controllers/EditorController/EditorController';
-
 function App() {
   return (
     <BrowserRouter>
