@@ -1,25 +1,41 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { Nav, DropdownButton } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Form, Button, FormControl } from 'react-bootstrap';
+import logout from '../../../helpers/logoff';
+import helpers from '../../../helpers/helpers';
+
+let modules = [
+    'shepherd',
+    'project',
+    'task',
+    'discussion',
+    'notes',
+    'expenses',
+    'activity',
+    'payments'
+]
 
 const navigation = props => (
-    <Nav activeKey="/home">
-        <Nav.Item>
-            <Link className='nav-link' to='/profile'>My profile</Link>
-        </Nav.Item>
-        <Nav.Item>
-            <Link className='nav-link' to='/add'>Add article</Link>
-        </Nav.Item>
-        <Nav.Item>
-            <Link className='nav-link' to='/logout'>Log out</Link>
-        </Nav.Item>
-        <Nav.Item>
-            <DropdownButton id="dropdown-basic-button" title="Filter">
-                <h6 class="dropdown-header">Add filter</h6>
-                <Link className='dropdown-item' to='shepherd'>Shepherd</Link>
-            </DropdownButton>
-        </Nav.Item>
-    </Nav>
+    <Navbar bg="light" expand="lg">
+        <Link to='/'>
+            <span className='navbar-brand'>Dashboard</span>
+        </Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+                <Link className='nav-link' to='/add'>Add article</Link>
+                <Link className='nav-link' to='/me'>My profile</Link>
+                <Link className='nav-link' to='/login' onClick={logout}>Log out</Link>
+                <NavDropdown title="Select filter" id="basic-nav-dropdown">
+                { modules.map((module, index) => <NavDropdown.Item key={index} name='filter' onClick={props.handleClick}>{helpers.capitalize(module)}</NavDropdown.Item>) }
+                </NavDropdown>
+            </Nav>
+            <Form inline>
+                <FormControl onChange={props.handleChange} name='search' type="text" placeholder="Search" className="mr-sm-2" />
+                <Button variant="outline-dark">Search</Button>
+            </Form>
+        </Navbar.Collapse>
+    </Navbar>
 );
 
 export default navigation;

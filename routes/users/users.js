@@ -1,4 +1,4 @@
-const 
+const
   controller = require('../../controllers/app/Users/UserController'),
   auth = require('../../middleware/auth');
 
@@ -11,6 +11,10 @@ module.exports = (router) => {
   // Login
   router.route('/login')
     .post(controller.login)
+
+  // Log out
+  router.route('/logout')
+    .post(auth, controller.logOut)
 
   // Edit my profile
   router.route('/me')

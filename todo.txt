@@ -1,0 +1,3 @@
+Napraviti chat anouncements stranicu gde ce se prikazati vreme trajanja nekong anouncmenta poredjati hronoloski
+
+Napraviti tasks rutu koja ce gadjati activecollab endpoint i uzimati iz task liste odredjene taskove i prikazivati ih 

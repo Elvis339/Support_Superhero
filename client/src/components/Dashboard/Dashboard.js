@@ -1,14 +1,20 @@
-import React from 'react';
-import Aux from '../Hoc/Aux';
-import Navigation from '../Layout/Navigation/Navigation';
+// import React, { Fragment } from 'react';
+// import { Card } from 'react-bootstrap';
+// import './Card.css'
 
-const dashboard = props => (
-    <Aux>
-        <Navigation />
-        <div>
-        Hello from dashboard
-        </div>
-    </Aux>
-);
+// const dashboard = props => {
+//     return (
+//         <Fragment>
+//             <Card>
+//                 <Card.Title className='text-center'>
+//                     {props.title}
+//                 </Card.Title>
+//                 <Card.Body>
+//                     {props.body}
+//                 </Card.Body>
+//             </Card>
+//         </Fragment>
+//     )
+// }
 
-export default dashboard;
+// export default dashboard;

@@ -1,0 +1,35 @@
+.Card {
+    width: 16.66% !important;
+    padding: 16px !important;
+}
+
+.Card:hover {
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+@media(max-width: 730px) {
+    .Card {
+        width: 100% !important;
+    }
+}
+
+@media(max-width: 940px) {
+    .Card {
+        width: 50% !important;
+    }
+}
+
+@media(max-width: 1200) {
+    .Card {
+        width: 33% !important;
+    }
+}
+
+@media(max-width: 1800) {
+    .Card {
+        width: 100% !important;
+    }
+}
