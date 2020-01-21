@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import Navigation from '../../components/Layout/Navigation/Navigation';
 import Frame from '../../components/Layout/Frame/Frame';
 import Card from '../../components/Layout/Cards/Cards';
+import Alert from '../../components/Layout/Alerts/Alerts';
+import Spinner from '../../components/Layout/Spinner/Spinner';
 import Resource from '../Resource/Resource';
 
 class DashboardController extends Component {
@@ -39,7 +41,9 @@ class DashboardController extends Component {
                         path={`/api/v1/documents?filter=${this.state.filter}`}
                         render={
                             data => {
-                                if (typeof (data.payload) !== "undefined") {
+                                if (data.error) {
+                                    return <Alert variant='danger' title='Ooops, network tab has more info.' />
+                                } else if (typeof (data.payload) !== "undefined") {
                                     return data.payload.map((val, index) => {
                                         return (
                                             <Fragment key={index}>
@@ -52,7 +56,7 @@ class DashboardController extends Component {
                                         )
                                     })
                                 }
-                                return <p>Loading...</p>
+                                return <Spinner animation='grow' size='lg' centered={true} />
                             }
                         }
                     />
