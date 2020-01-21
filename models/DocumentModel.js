@@ -2,20 +2,26 @@ const
     mongoose = require('mongoose');
 
 const modelSchema = new mongoose.Schema({
-    type: {
+    title: {
         type: String,
         required: true, 
+    },
+    category: {
+        type: String,
+        required: true,
     },
     body: {
         type: String,
         required: true, 
-        trim: true
+        trim: true,
     },
     created_by: {
         type: String,
-        required: true
+        required: true,
     },
-    
+    files: [
+        Buffer
+    ]
 }, {
     timestamps: true
 })

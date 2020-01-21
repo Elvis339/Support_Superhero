@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import axios from 'axios';
+import { getJwt } from '../../helpers/jwt';
 
 class Resource extends Component {
     state = {
@@ -9,7 +10,7 @@ class Resource extends Component {
     };
 
     componentDidMount() {
-        axios.get(this.props.path).then(res => {
+        axios.get(this.props.path, { headers: { "Authorization": `Bearer: ${getJwt()}}` }}).then(res => {
             this.setState({
                 payload: res.data,
                 loading: false

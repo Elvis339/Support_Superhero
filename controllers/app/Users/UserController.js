@@ -24,7 +24,7 @@ module.exports = {
     try {
       const user = await User.findByCredentials(req.body.email, req.body.password)
       const token = await user.generateAuthToken()
-      res.status(200).send({ token })
+      res.status(200).send({ user, token })
     } catch (error) {
       res.status(403).send({
         message: 'Unable to login, contact support!',
@@ -34,9 +34,26 @@ module.exports = {
     }
   },
 
+  logOut: async (req, res) => {
+    try {
+      const { _id } = req.user
+      const user = await User.findById({ _id })
+      if (!user) throw new Error('No user found, something reeeaaallly went wrong.');
+      user.tokens = []
+      await user.save()
+      res.status(200).send(user)
+    } catch (error) {
+      res.status(500).send({
+        message: 'Contact support!',
+        status: 403,
+        err: error.toString()
+      })
+    }
+  },
+
   validate: async (req, res) => {
     try {
-      res.status(200).send({ user: req.user })
+      res.status(200).send(req.user)
     } catch (error) {
       res.status(500).send({
         message: "Server error",

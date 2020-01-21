@@ -3,6 +3,7 @@ const
   auth = require('../../middleware/auth');
 
 module.exports = (router) => {
-  router.route('/document')
-    .post()
+  router.route('/documents')
+    .get(auth, controller.getDocuments)
+    .post(auth, controller.addDocument)
 };

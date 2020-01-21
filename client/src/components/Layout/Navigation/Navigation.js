@@ -11,20 +11,19 @@ const navigation = props => (
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
                 <Link className='nav-link' to='/add'>Add article</Link>
+                <Link className='nav-link' to='/me'>My profile</Link>
                 <Link className='nav-link' to='/logout'>Log out</Link>
-
-                {/* @TODO: Fetch preview based on URL */}
-
-
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                    <h6 className="dropdown-header">Add filter</h6>
-                    <Link className='dropdown-item' to='shepherd'>Shepherd</Link>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                <NavDropdown title="Select filter" id="basic-nav-dropdown">
+                    <NavDropdown.Item name='filter' onClick={props.handleClick}>Shepherd</NavDropdown.Item>
+                    <NavDropdown.Item name='filter' onClick={props.handleClick}>Project</NavDropdown.Item>
+                    <NavDropdown.Item name='filter' onClick={props.handleClick}>Task</NavDropdown.Item>
+                    <NavDropdown.Item name='filter' onClick={props.handleClick}>Discussion</NavDropdown.Item>
+                    <NavDropdown.Item name='filter' onClick={props.handleClick}>Notes</NavDropdown.Item>
+                    <NavDropdown.Item name='filter' onClick={props.handleClick}>Payments</NavDropdown.Item>
                 </NavDropdown>
             </Nav>
             <Form inline>
-                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                <FormControl onChange={props.handleChange} name='search' type="text" placeholder="Search" className="mr-sm-2" />
                 <Button variant="outline-dark">Search</Button>
             </Form>
         </Navbar.Collapse>

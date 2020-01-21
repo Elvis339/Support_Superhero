@@ -1,14 +1,12 @@
 import React from 'react';
 import Aux from '../Hoc/Aux';
-import Navigation from '../Layout/Navigation/Navigation';
 
-const dashboard = props => (
-    <Aux>
-        <Navigation />
-        <div>
-        Hello from dashboard
-        </div>
-    </Aux>
-);
+const dashboard = props => {
+    return(
+        <Aux>
+            From dash
+        </Aux>
+    )
+}
 
 export default dashboard;
