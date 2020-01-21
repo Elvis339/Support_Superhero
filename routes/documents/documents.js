@@ -1,5 +1,5 @@
 const 
-  controller = require('../../controllers/app/Documents/DocumentController'),
+  controller = require('../../controllers/app/Documents/DocumentsController'),
   auth = require('../../middleware/auth');
 
 module.exports = (router) => {

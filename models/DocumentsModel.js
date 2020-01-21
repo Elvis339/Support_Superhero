@@ -1,7 +1,7 @@
 const
     mongoose = require('mongoose');
 
-const modelSchema = new mongoose.Schema({
+const documentsSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -24,6 +24,7 @@ const modelSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
+        // unique: true,
     },
     created_by: {
         type: String,
@@ -36,6 +37,6 @@ const modelSchema = new mongoose.Schema({
     timestamps: true
 })
 
-const Document = mongoose.model('Model', modelSchema)
+const Documents = mongoose.model('Documents', documentsSchema)
 
-module.exports = Document
+module.exports = Documents
