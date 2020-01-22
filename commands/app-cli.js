@@ -1,7 +1,7 @@
 require('dotenv').config();
 const
     yargs = require('yargs'),
-    commandos = require('./commands')
+    commandos = require('./commands');
 
 yargs.version('1.0.0')
     .usage('Usage: nodejs-cli-app <command> [options]')
@@ -11,16 +11,15 @@ yargs.version('1.0.0')
         describe: 'Set application state',
         handler(argv) {
             const arg = argv._[1]
-            const path = '../.env'
 
             switch (arg) {
                 case "prod":
-                    commandos.setState(path, "APP_MODE=production")
+                    commandos.setState("production")
                     commandos.chalkStates.success('APP_MODE=production')
                     break;
                 case "dev":
-                    commandos.setState(path, "APP_MODE=development")
-                    commandos.chalkStates.success('APP_MODE=development')
+                    commandos.setState("development")
+                    commandos.chalkStates.success("APP_MODE=development")
                     break;
                 default:
                     commandos.chalkStates.error("Invalid argument, try prod or dev")
