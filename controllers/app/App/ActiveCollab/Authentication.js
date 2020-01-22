@@ -1,5 +1,9 @@
 require('dotenv').config();
-const axios = require('axios');
+const
+    events = require('events').EventEmitter,
+    eventEmitter = new events.EventEmitter(),
+    axios = require('axios');
+
 let
     intent = null,
     X_Angie_AuthApiToken = null;

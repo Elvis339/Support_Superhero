@@ -23,9 +23,10 @@ const navigation = props => (
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-                <Link className='nav-link' to='/add'>Add article</Link>
+                <Link className='nav-link' to='/add'>Add document</Link>
                 <Link className='nav-link' to='/me'>My profile</Link>
                 <Link className='nav-link' to='/login' onClick={logout}>Log out</Link>
+                <Link className='nav-link' to='/tasks'>Tasks</Link>
                 <NavDropdown title="Select filter" id="basic-nav-dropdown">
                 { modules.map((module, index) => <NavDropdown.Item key={index} name='filter' onClick={props.handleClick}>{helpers.capitalize(module)}</NavDropdown.Item>) }
                 </NavDropdown>
