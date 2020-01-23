@@ -8,7 +8,7 @@ module.exports = {
     getTaskLists: async (req, res) => {
         try {
             const project = req.ActiveCollab
-            let task_list = project.task_lists.filter(list => list.id === 45622 || list.id === 42793 || list.id === 42800)
+            let task_list = project.task_lists.filter(list => TASK_LIST_IDS.includes(list.id))
             res.status(200).send(task_list)
         } catch (error) {
             res.status(500).send({
