@@ -3,9 +3,6 @@ import axios from 'axios';
 import { getJwt } from '../../helpers/jwt';
 
 class Resource extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     state = {
         loading: true,

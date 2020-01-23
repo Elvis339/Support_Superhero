@@ -19,7 +19,7 @@ class DashboardController extends Component {
 
 
     handler(e, param) {
-        if (param == 'click') {
+        if (param === 'click') {
             return this.setState({
                 [e.target.name]: String(e.target.textContent).toLocaleLowerCase()
             })
@@ -43,11 +43,13 @@ class DashboardController extends Component {
                             data => {
                                 if (data.error) {
                                     return <Alert variant='danger' title='Ooops, network tab has more info.' />
+                                } else if (data.loading === true) {
+                                    return <Spinner animation='grow' size='lg' centered={true} />
                                 } else if (typeof (data.payload) !== "undefined") {
                                     return data.payload.map((val, index) => {
                                         return (
                                             <Fragment key={index}>
-                                                <Card 
+                                                <Card
                                                     title={val.title}
                                                     body={val.body}
                                                     uri={val._id}
@@ -56,7 +58,6 @@ class DashboardController extends Component {
                                         )
                                     })
                                 }
-                                return <Spinner animation='grow' size='lg' centered={true} />
                             }
                         }
                     />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Card } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 
 const frame = props => {
     return (

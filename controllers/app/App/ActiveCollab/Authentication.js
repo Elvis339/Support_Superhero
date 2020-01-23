@@ -31,19 +31,6 @@ const getAngieAuthApiToken = async () => {
     throw new Error(res.response)
 }
 
-const container = async () => {
-    try {
-        const intent = await getIntent()
-        const angie = await getAngieAuthApiToken()
-        return {
-            intent,
-            angie
-        }
-    } catch (error) {
-        console.log(error)
-    }
-}
-
 module.exports = {
     auth_container: async () => {
         try {

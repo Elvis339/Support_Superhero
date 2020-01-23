@@ -3,7 +3,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import AuthController from './controllers/AuthController/AuthController';
 import AuthenticationController from './controllers/AuthenticationController/AuthenticationController';
 import DashboardController from './controllers/DashboardController/DashboardController';
-import AcT from './controllers/ActiveCollabController/AcApiController';
+import ActiveCollabController from './controllers/ActiveCollabController/AcApiController';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         <Route path={'/login'} exact component={AuthenticationController} />
         <AuthController>
           <Route path={'/'} exact component={DashboardController} />
-          <Route path={'/tasks'} exact component={AcT} />
+          <Route path={'/tasks'} exact component={ActiveCollabController} />
         </AuthController>
       </Switch>
     </BrowserRouter>

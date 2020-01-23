@@ -6,7 +6,7 @@ const AlertDismissibleExample = props => {
 
     if (show) {
         return (
-            <Alert variant={props.variant} onClose={() => setShow(false)} dismissible>
+            <Alert className='my-3 mx-auto' variant={props.variant} onClose={() => setShow(false)} dismissible>
                 <Alert.Heading>{props.title}</Alert.Heading>
             </Alert>
         );
