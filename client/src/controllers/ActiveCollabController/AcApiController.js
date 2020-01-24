@@ -12,6 +12,7 @@ class ActiveCollabController extends Component {
     constructor(props) {
         super(props)
         this.handler.bind(this);
+        this.handleTask.bind(this);
     };
 
     state = {
@@ -31,6 +32,20 @@ class ActiveCollabController extends Component {
             [e.target.name]: String(e.target.value).toLocaleLowerCase()
         })
     };
+
+    async handleTask(e) {
+        let task_list_id = e.target.dataset.id
+
+        try {
+            let res = await fetch(`/api/v1/activecollab/tasks/?task_list_id=${task_list_id}`, {
+                method: 'GET',
+                headers: { "Authorization": `Bearer: ${window.localStorage.getItem('token')}` }
+            })
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     render() {
         return (
@@ -56,9 +71,12 @@ class ActiveCollabController extends Component {
                                         return data.payload.map((val, index) => {
                                             return (
                                                 <Fragment key={val.id}>
-                                                    <Collapsable title={val.name}>
+                                                    {/* <Collapsable title={val.name}>
                                                         test
-                                                    </Collapsable>
+                                                    </Collapsable> */}
+                                                    <div className='btn btn-primary' onClick={e => this.handleTask(e)} data-id={val.id}>
+                                                        {val.name}
+                                                    </div>
                                                 </Fragment>
                                             )
                                         })

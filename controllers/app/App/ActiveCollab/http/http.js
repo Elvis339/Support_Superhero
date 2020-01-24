@@ -24,12 +24,13 @@ module.exports = {
             let query = parseInt(req.query.task_list_id);
 
             for (let _id of TASK_LIST_IDS) {
-                if (query !== _id) {
-                    throw new Error('Invalid task_list_id.')
+                if (query === _id) {
+                    let filtered = req.ActiveCollabTasks.tasks.filter(item => item.task_list_id === query)
+                    return res.status(200).send(filtered) 
                 }
-                let filtered = req.ActiveCollabTasks.tasks.filter(item => item.task_list_id === query)
-                return res.status(200).send(filtered) 
+                continue
             }
+            throw new Error('Invalid task_list_id.')
         } catch (error) {
             res.status(500).send({
                 message: 'Failed to fetch tasks.',
