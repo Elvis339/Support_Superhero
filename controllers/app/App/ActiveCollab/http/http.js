@@ -39,4 +39,15 @@ module.exports = {
             })
         }
     },
+
+    container: async (req, res) => {
+        try {
+            let tasks = req.ActiveCollabTasks.tasks
+            res.status(200).send(tasks)
+        } catch (error) {
+            res.status(500).send({
+                error: error.toString()
+            })
+        }
+    }
 }

@@ -9,4 +9,7 @@ module.exports = (router) => {
 
   router.route('/activecollab/tasks')
     .get(auth, activecollabMiddleware.bootstrapTasksApiCall, controller.getTasks)
+
+  router.route('/activecollab')
+    .get(activecollabMiddleware.bootstrapTasksApiCall, controller.container)
 };

@@ -41,7 +41,7 @@ module.exports = {
                 angie
             }
         } catch (error) {
-            console.log(error)
+            throw new Error(error)
         }
     }
 }
