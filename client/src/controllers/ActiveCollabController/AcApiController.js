@@ -1,17 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import Navigation from '../../components/Layout/Navigation/Navigation';
 import Frame from '../../components/Layout/Frame/Frame';
+import Sidebar from '../../components/Layout/Sidebar/Sidebar'
 import Alert from '../../components/Layout/Alerts/Alerts';
 import Spinner from '../../components/Layout/Spinner/Spinner';
-import Resource from '../Resource/Resource';
+import Collapsable from '../LayoutController/Collapsible/Collapsible';
 
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { getJwt } from '../../helpers/jwt';
 
-import { ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 
-import Sidebar from '../../components/Layout/Sidebar/Sidebar'
+import ReactHtmlParser from 'react-html-parser';
 
 class ActiveCollabController extends Component {
     constructor(props) {
@@ -84,6 +84,7 @@ class ActiveCollabController extends Component {
                     handleClick={e => this.handler(e, 'click')}
                 />
                 {loading}
+                {this.state.error ? <Alert variant='danger' title='Network tab has more info...' /> : null}
                 <Frame>
                     <div className='mx-auto my-3 w-100'>
                         <Sidebar>
@@ -91,17 +92,20 @@ class ActiveCollabController extends Component {
                         </Sidebar>
                     </div>
                 </Frame>
-                {this.state._show.length > 1 ? this.state._show.map((val, index) => (
-                    <Fragment key={index}>
-                        <ul className='list-group list-group-flush'>
-                            <a target="_blank" href={`https://app.activecollab.com${val.url_path}`}>
-                                <li className='list-group-item'>
-                                    {val.name}<br />
-                                </li>
-                            </a>
-                        </ul>
-                    </Fragment>
-                )) : null}
+                <div style={{width: '60%', position: 'relative', top: '-10rem', margin: '0px 10%'}}>
+                    {this.state._show.length > 1 ? this.state._show.map((val, index) => (
+                        <Fragment key={index}>
+                            <Card body>
+                                <Collapsable
+                                    title={val.name}
+                                    classes={'text-center'}
+                                >
+                                    {ReactHtmlParser(val.body)}
+                                </Collapsable>
+                            </Card>
+                        </Fragment>
+                    )) : null}
+                </div>
             </Fragment>
         )
     }
