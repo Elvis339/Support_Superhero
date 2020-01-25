@@ -11,7 +11,6 @@ const app = express();
 const router = express.Router();
 
 const environment = process.env.NODE_ENV; // development
-// const stage = require('./config')[environment];
 const port = process.env.PORT || 3001
 
 // Middlewares
