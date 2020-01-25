@@ -4,12 +4,12 @@ const
   auth = require('../../middleware/auth');
 
 module.exports = (router) => {
+  router.route('/activecollab')
+    .get(auth, activecollabMiddleware.bootstrapTasksApiCall, controller.container)
+    
   router.route('/activecollab/task-lists')
     .get(auth, activecollabMiddleware.bootstrapApiCall, controller.getTaskLists)
 
   router.route('/activecollab/tasks')
     .get(auth, activecollabMiddleware.bootstrapTasksApiCall, controller.getTasks)
-
-  router.route('/activecollab')
-    .get(activecollabMiddleware.bootstrapTasksApiCall, controller.container)
 };
