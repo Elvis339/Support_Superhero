@@ -1,0 +1,30 @@
+.cx-0 {
+    width: 60%;
+    position: relative;
+    top: -10rem;
+    margin: 0px 10%;
+}
+
+@media(max-width: 730px) {
+    .cx-0 {
+        width: 100% !important;
+    }
+}
+
+@media(max-width: 940px) {
+    .cx-0 {
+        width: 50% !important;
+    }
+}
+
+@media(max-width: 1200) {
+    .cx-0 {
+        width: 33% !important;
+    }
+}
+
+@media(max-width: 1800) {
+    .cx-0 {
+        width: 100% !important;
+    }
+}
