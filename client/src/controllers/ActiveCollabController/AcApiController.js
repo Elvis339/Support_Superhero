@@ -5,13 +5,13 @@ import Sidebar from '../../components/Layout/Sidebar/Sidebar'
 import Alert from '../../components/Layout/Alerts/Alerts';
 import Spinner from '../../components/Layout/Spinner/Spinner';
 import Collapsable from '../LayoutController/Collapsible/Collapsible';
+import { Card, Badge } from 'react-bootstrap'
 
 import axios from 'axios'
 import { getJwt } from '../../helpers/jwt';
-
-import { Card } from 'react-bootstrap'
-
 import ReactHtmlParser from 'react-html-parser';
+
+import './cx-0.css'
 
 class ActiveCollabController extends Component {
     constructor(props) {
@@ -92,10 +92,12 @@ class ActiveCollabController extends Component {
                         </Sidebar>
                     </div>
                 </Frame>
-                <div style={{width: '60%', position: 'relative', top: '-10rem', margin: '0px 10%'}}>
+                <div className='cx-0'>
                     {this.state._show.length > 1 ? this.state._show.map((val, index) => (
                         <Fragment key={index}>
                             <Card body>
+                                <Badge variant='info'>Created by: {val.created_by_name}</Badge>
+                                <a target="_blank" rel="noopener noreferrer" href={`https://app.activecollab.com/1${val.url_path}`} class="mx-1 badge badge-success">Visit task</a>
                                 <Collapsable
                                     title={val.name}
                                     classes={'text-center'}
