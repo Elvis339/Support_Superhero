@@ -7,6 +7,8 @@ const documentsSchema = new mongoose.Schema({
         required: true,
     },
     category: {
+        type: String,
+        lowercase: true,
         enum: [
             'shepherd',
             'project',
@@ -17,8 +19,6 @@ const documentsSchema = new mongoose.Schema({
             'activity',
             'payments'
         ],
-        type: String,
-        required: true,
     },
     body: {
         type: String,

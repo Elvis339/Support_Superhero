@@ -1,0 +1,18 @@
+.ah-background {
+    background: #373a44;
+}
+
+.ah-btn {
+    border-radius: 7px;
+    color: aquamarine;
+    padding: 2px 13px;
+    background: #373a44;
+}
+
+.disabled {
+    background: silver;
+}
+
+.ah-btn:hover {
+    border: 1px solid #fff;
+}

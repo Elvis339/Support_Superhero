@@ -1,4 +1,4 @@
-const auth = require('../../../controllers/app/App/ActiveCollab/http/authenticatedRequest');
+const auth = require('../../../controllers/ActiveCollab/http/authenticatedRequest');
 
 const bootstrapApiCall = async (req, res, next) => {
     const url = `${process.env.ACTIVECOLLAB_API_URL}/api/v1/projects/${process.env.ACTIVECOLLAB_PROJECT_ID}`
