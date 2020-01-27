@@ -1,6 +1,7 @@
 require('../../../db/database')
 const
-    News = require('../../../models/NewsModel');
+    News = require('../../../models/NewsModel'),
+    Utils = require('../../../utils');
 
 module.exports = {
     addNews: async (req, res) => {
@@ -18,15 +19,46 @@ module.exports = {
         }
     },
 
+    getNewsToday: async (req, res) => {
+        try {
+            let
+                today = Utils.date_now()
+                news = await News.find({ created_on: today }).sort({ createdAt: -1 });
+
+            if (news.length < 1) throw new Error('No news for this day...')
+            res.status(200).send(news)
+        } catch (error) {
+            res.status(500).send({
+                error: error.stack,
+                message: error.toString(),
+                status: 500
+            })
+        }
+    },
+
+    getPreviousNews: async (req, res) => {
+        try {
+            let date = req.params.date, news = await News.find({ created_on: date }).sort({ createdAt: -1 });
+            if (news.length < 1) throw new Error('No news for this day...')
+            res.status(200).send(news)
+        } catch (error) {
+            res.status(500).send({
+                message: error.toString(),
+                status: 500,
+                error: error.stack
+            })
+        }
+    },
+
     getNews: async (req, res) => {
         try {
-            const news = await News.find({  })
+            const news = await News.find({}).sort({ created_on: -1 })
 
             if (news.length < 1) throw new Error('No news today...')
 
             res.status(200).send(news)
         } catch (error) {
-            let status = error.toString() === 'Error: No news today...' ? 418 :  500;
+            let status = error.toString() === 'Error: No news today...' ? 418 : 500;
             message = error.toString() === 'Error: No news today...' ? 'No news today...' : 'Server error...';
             res.status(status).send({
                 error: error.stack,

@@ -3,7 +3,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import AuthController from './controllers/AuthController/AuthController';
 import AuthenticationController from './controllers/AuthenticationController/AuthenticationController';
 import DashboardController from './controllers/DashboardController/DashboardController';
-import News from './components/News/News';
+import NewsController from './controllers/NewsController/NewsController';
 import ActiveCollabController from './controllers/ActiveCollabController/AcApiController';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -15,7 +15,7 @@ function App() {
         <Route path={'/login'} exact component={AuthenticationController} />
         <AuthController>
           <Route path={'/'} exact component={DashboardController} />
-          <Route path={'/news'} exact component={News} />
+          <Route path={'/news'} exact component={NewsController} />
           <Route path={'/tasks'} exact component={ActiveCollabController} />
         </AuthController>
       </Switch>

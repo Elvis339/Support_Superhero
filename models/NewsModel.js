@@ -6,6 +6,10 @@ const newsSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    created_on: {
+        type: String,
+        required: true,
+    },
     type: {
         type: String,
         enum: [
