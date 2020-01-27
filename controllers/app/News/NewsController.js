@@ -22,7 +22,7 @@ module.exports = {
     getNewsToday: async (req, res) => {
         try {
             let
-                today = Utils.date_now()
+                today = Utils.date_now(),
                 news = await News.find({ created_on: today }).sort({ createdAt: -1 });
 
             if (news.length < 1) throw new Error('No news for this day...')
@@ -38,7 +38,10 @@ module.exports = {
 
     getPreviousNews: async (req, res) => {
         try {
-            let date = req.params.date, news = await News.find({ created_on: date }).sort({ createdAt: -1 });
+            let 
+                date = req.params.date, 
+                news = await News.find({ created_on: date }).sort({ createdAt: -1 });
+                
             if (news.length < 1) throw new Error('No news for this day...')
             res.status(200).send(news)
         } catch (error) {
