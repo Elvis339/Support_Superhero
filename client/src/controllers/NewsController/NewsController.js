@@ -19,10 +19,18 @@ class NewsController extends Component {
     }
 
     dateHandler(e) {
-        this.setState({
-            date: e.target.value,
-            path: `/api/v1/news/today/${e.target.value}`
-        })
+        let date = e.target.dataset.type
+
+        if (date === 'today') {
+            this.setState({
+                path: `/api/v1/news/today`
+            })
+        } else {
+            this.setState({
+                date: e.target.value,
+                path: `/api/v1/news/today/${e.target.value}`
+            })
+        }
     }
 
     render() {
@@ -30,6 +38,7 @@ class NewsController extends Component {
             <Fragment>
                 <ActivityHeader
                     changeDate={e => this.dateHandler(e)}
+                    reset={this.reset}
                 />
                 <Container className='my-5'>
                     <Resource

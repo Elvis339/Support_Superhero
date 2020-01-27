@@ -8,8 +8,8 @@ module.exports = (router) => {
     .get(controller.getNews)
 
   router.route('/news/today')
-    .get(controller.getNewsToday)
+    .get(auth, controller.getNewsToday)
 
   router.route('/news/today/:date')
-    .get(controller.getPreviousNews)
+    .get(auth, controller.getPreviousNews)
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, ButtonGroup, FormControl } from 'react-bootstrap';
-import helpers from '../../../../helpers/helpers';
+
 import './ActivityHeader.css'
 
 const activityHeader = props => {
@@ -9,7 +9,7 @@ const activityHeader = props => {
             <Row className='justify-content-center py-3'>
                 <ButtonGroup aria-label="Basic example">
                     <FormControl type='date' className='mx-2 mt-2 ah-btn' onChange={props.changeDate} />
-                    <button className='mx-2 ah-btn'>{Date().slice(0, 15)}</button>
+                    <button className='mx-2 ah-btn' data-type='today' onClick={props.changeDate} >{Date().slice(0, 15)}</button>
                     <hr/>
                 </ButtonGroup>
             </Row>
