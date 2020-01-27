@@ -22,11 +22,20 @@ module.exports = {
     getNewsToday: async (req, res) => {
         try {
             let
+                mess = [{
+                    created_by: 'No one...',
+                    body: 'No news this day...',
+                    timestamp: Date(),
+                    createdAt: "0000-00-00T00:00:00.000Z"
+                }],
                 today = Utils.date_now(),
                 news = await News.find({ created_on: today }).sort({ createdAt: -1 });
 
-            if (news.length < 1) throw new Error('No news for this day...')
-            res.status(200).send(news)
+            if (news.length < 1) {
+                return res.status(204).send(mess)
+            }
+
+            return res.status(200).send(news)
         } catch (error) {
             res.status(500).send({
                 error: error.stack,
@@ -38,12 +47,21 @@ module.exports = {
 
     getPreviousNews: async (req, res) => {
         try {
-            let 
-                date = req.params.date, 
+            let
+                mess = [{
+                    created_by: 'No one...',
+                    body: 'No news this day...',
+                    timestamp: Date(),
+                    createdAt: "0000-00-00T00:00:00.000Z"
+                }],
+                date = req.params.date,
                 news = await News.find({ created_on: date }).sort({ createdAt: -1 });
-                
-            if (news.length < 1) throw new Error('No news for this day...')
-            res.status(200).send(news)
+
+            if (news.length < 1) {
+                return res.status(200).send(mess)
+            }
+
+            return res.status(200).send(news)
         } catch (error) {
             res.status(500).send({
                 message: error.toString(),
