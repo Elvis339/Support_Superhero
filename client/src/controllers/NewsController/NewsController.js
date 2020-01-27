@@ -38,7 +38,6 @@ class NewsController extends Component {
             <Fragment>
                 <ActivityHeader
                     changeDate={e => this.dateHandler(e)}
-                    reset={this.reset}
                 />
                 <Container className='my-5'>
                     <Resource
