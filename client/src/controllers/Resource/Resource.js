@@ -1,6 +1,9 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { getJwt } from '../../helpers/jwt';
+
+import Alert from '../../components/Layout/Alerts/Alerts';
+import Spinner from '../../components/Layout/Spinner/Spinner';
 
 class Resource extends Component {
 
@@ -31,7 +34,14 @@ class Resource extends Component {
     };
 
     render() {
-        return this.props.render(this.state)
+        if (this.state.error) {
+            console.log(`Delete 38 line in Resource.js this is for development only! ${this.state.error}`)
+            return <Alert variant='danger' title='Ooops, network tab has more info.' />
+        } else if (this.state.loading) {
+            return <Spinner animation='grow' size='lg' centered={true} />
+        } else {
+            return this.props.render(this.state)
+        }
     };
 };
 
