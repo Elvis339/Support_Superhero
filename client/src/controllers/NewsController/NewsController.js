@@ -44,7 +44,6 @@ class NewsController extends Component {
                         path={this.state.path}
                         render={
                             data => {
-                                console.log(data.payload)
                                 return data.payload.map((val, index) => {
                                     return (
                                         <Fragment key={index}>
