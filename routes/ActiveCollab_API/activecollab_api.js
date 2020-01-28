@@ -1,5 +1,5 @@
 const 
-  controller = require('../../controllers/app/App/ActiveCollab/http/http'),
+  controller = require('../../controllers/ActiveCollab/http/http'),
   activecollabMiddleware = require('../../middleware/external/ActiveCollab/bootstrap_api'),
   auth = require('../../middleware/auth');
 

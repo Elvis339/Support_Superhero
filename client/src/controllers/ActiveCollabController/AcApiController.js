@@ -97,7 +97,7 @@ class ActiveCollabController extends Component {
                         <Fragment key={index}>
                             <Card body>
                                 <Badge variant='info'>Created by: {val.created_by_name}</Badge>
-                                <a target="_blank" rel="noopener noreferrer" href={`https://app.activecollab.com/1${val.url_path}`} class="mx-1 badge badge-success">Visit task</a>
+                                <a target="_blank" rel="noopener noreferrer" href={`https://app.activecollab.com/1${val.url_path}`} className="mx-1 badge badge-success">Visit task</a>
                                 <Collapsable
                                     title={val.name}
                                     classes={'text-center'}
