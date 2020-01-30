@@ -70,22 +70,4 @@ module.exports = {
             })
         }
     },
-
-    getNews: async (req, res) => {
-        try {
-            const news = await News.find({}).sort({ created_on: -1 })
-
-            if (news.length < 1) throw new Error('No news today...')
-
-            res.status(200).send(news)
-        } catch (error) {
-            let status = error.toString() === 'Error: No news today...' ? 418 : 500;
-            message = error.toString() === 'Error: No news today...' ? 'No news today...' : 'Server error...';
-            res.status(status).send({
-                error: error.stack,
-                message,
-                status,
-            })
-        }
-    }
 }

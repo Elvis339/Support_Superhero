@@ -24,5 +24,5 @@ module.exports = {
         }
 
         return `${year}-${month}-${day}`;
-    }
+    },
 }
