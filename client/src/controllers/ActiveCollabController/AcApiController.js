@@ -12,7 +12,6 @@ import { getJwt } from '../../helpers/jwt';
 import ReactHtmlParser from 'react-html-parser';
 
 import './cx-0.css'
-
 class ActiveCollabController extends Component {
     constructor(props) {
         super(props)

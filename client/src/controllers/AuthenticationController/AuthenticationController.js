@@ -31,6 +31,7 @@ class AuthenticationController extends Component {
                 password: this.state.password,
             })
             localStorage.setItem('token', res.data.token);
+            localStorage.setItem('created_by', res.data.user.email);
             this.props.history.push('/');
         }
         catch (err) {

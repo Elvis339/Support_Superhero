@@ -14,7 +14,10 @@ const router = express.Router();
 const server = http.createServer(app)
 
 // INIT SOCKER SERVICE
-socketService.init(server)
+let _io = socketService.init(server)
+_io.of('/socket/notification').on('connection', (socket) => {
+    socket.emit('kurcina')
+})
 
 const environment = process.env.NODE_ENV; // development
 const port = process.env.PORT || 3001
