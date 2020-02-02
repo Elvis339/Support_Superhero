@@ -81,6 +81,7 @@ class ActiveCollabController extends Component {
                 <Navigation
                     handleChange={e => this.handler(e, 'change')}
                     handleClick={e => this.handler(e, 'click')}
+                    show={false}
                 />
                 {loading}
                 {this.state.error ? <Alert variant='danger' title='Network tab has more info...' /> : null}

@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { getJwt } from '../../helpers/jwt';
-import Aux from '../../components/Hoc/Aux';
 
 
 class AuthenticatedComponent extends Component {
@@ -42,9 +41,9 @@ class AuthenticatedComponent extends Component {
             )
         }
         return (
-            <Aux>
+            <Fragment>
                 {this.props.children}
-            </Aux>
+            </Fragment>
         )
     }
 }

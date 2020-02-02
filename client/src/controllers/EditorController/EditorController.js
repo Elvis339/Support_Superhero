@@ -50,7 +50,7 @@ class Editor extends Component {
     try {
       await axios.post('/api/v1/documents',
         {
-          title: this.state.title == '' ? Error('Empty!') : this.state.title,
+          title: this.state.title === '' ? Error('Empty!') : this.state.title,
           category: this.state.category,
           body: this.state.text == '' ? Error('Empty!') : this.state.text,
           created_by: window.localStorage.getItem('created_by'),

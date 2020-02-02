@@ -38,6 +38,7 @@ class DashboardController extends Component {
                 <Navigation
                     handleChange={e => this.handler(e, 'change')}
                     handleClick={e => this.handler(e, 'click')}
+                    show={true}
                 />
                 <Frame>
                     <Resource

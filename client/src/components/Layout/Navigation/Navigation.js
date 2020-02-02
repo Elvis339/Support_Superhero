@@ -15,33 +15,38 @@ let modules = [
     'payments'
 ]
 
-const navigation = props => (
-    <Navbar bg="light" expand="lg">
-        <Link to='/'>
-            <span className='navbar-brand'>Dashboard</span>
-        </Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-                <NavDropdown title='Profile'>
-                    <Link className='dropdown-item' to='/me'>Edit me</Link>
-                    <Link className='dropdown-item' to='/login' onClick={logout}>Log out</Link>
-                </NavDropdown>
-                <NavDropdown title='Documents'>
-                    <Link className='dropdown-item' to='/add'>Add document</Link>
-                </NavDropdown>
-                <Link className='nav-link' to='/tasks'>Tasks</Link>
-                <Link className='nav-link' to='/news'>News</Link>
-                <NavDropdown title="Select filter" id="basic-nav-dropdown">
-                { modules.map((module, index) => <NavDropdown.Item key={index} name='filter' onClick={props.handleClick}>{helpers.capitalize(module)}</NavDropdown.Item>) }
-                </NavDropdown>
-            </Nav>
-            <Form inline>
-                <FormControl onChange={props.handleChange} name='search' type="text" placeholder="Search" className="mr-sm-2" />
-                <Button variant="outline-dark">Search</Button>
-            </Form>
-        </Navbar.Collapse>
-    </Navbar>
-);
+const navigation = props => {
+
+
+
+    return (
+        <Navbar bg="light" expand="lg">
+            <Link to='/'>
+                <span className='navbar-brand'>Dashboard</span>
+            </Link>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                    <NavDropdown title='Profile'>
+                        <Link className='dropdown-item' to='/me'>Edit me</Link>
+                        <Link className='dropdown-item' to='/login' onClick={logout}>Log out</Link>
+                    </NavDropdown>
+                    <NavDropdown title='Documents'>
+                        <Link className='dropdown-item' to='/add'>Add document</Link>
+                    </NavDropdown>
+                    <Link className='nav-link' to='/tasks'>Tasks</Link>
+                    <Link className='nav-link' to='/news'>News</Link>
+                    {props.show ? <NavDropdown title="Select filter" id="basic-nav-dropdown">
+                        {modules.map((module, index) => <NavDropdown.Item key={index} name='filter' onClick={props.handleClick}>{helpers.capitalize(module)}</NavDropdown.Item>)}
+                    </NavDropdown> : null}
+                </Nav>
+                <Form inline>
+                    <FormControl onChange={props.handleChange} name='search' type="text" placeholder="Search" className="mr-sm-2" />
+                    <Button variant="outline-dark">Search</Button>
+                </Form>
+            </Navbar.Collapse>
+        </Navbar>
+    )
+}
 
 export default navigation;
