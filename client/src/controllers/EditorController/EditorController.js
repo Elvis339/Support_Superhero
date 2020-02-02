@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactQuill from 'react-quill';
+import Alert from '../../components/Layout/Alerts/Alerts';
 import EditorComponent from '../../components/Editor/Editor';
 
 import { getJwt } from '../../helpers/jwt';
@@ -17,7 +18,8 @@ class Editor extends Component {
       text: '',
       title: '',
       category: '',
-      error: null
+      error: null,
+      status: null
     }
   }
 
@@ -48,15 +50,20 @@ class Editor extends Component {
   saveToDB = async e => {
     e.preventDefault();
     try {
-      await axios.post('/api/v1/documents',
+      let res = await axios.post('/api/v1/documents',
         {
           title: this.state.title === '' ? Error('Empty!') : this.state.title,
           category: this.state.category,
-          body: this.state.text == '' ? Error('Empty!') : this.state.text,
+          body: this.state.text === '' ? Error('Empty!') : this.state.text,
           created_by: window.localStorage.getItem('created_by'),
         },
         { headers: { "Authorization": `Bearer: ${getJwt()}` } }
       )
+      if (res.status === 201) {
+        this.setState({
+          status: "Document added! 🚀"
+        })
+      }
     } catch (error) {
       this.setState({
         error
@@ -82,6 +89,8 @@ class Editor extends Component {
         saveToDB={e => this.saveToDB(e)}
         change={e => this.handleForm(e)}
       >
+        {this.state.error ? <Alert variant='danger' title='Network tab has more info...' /> : null}
+        {this.state.status ? <Alert variant='success' title={this.state.status} /> : null}
         <ReactQuill
           placeholder="Make support life easier. 🥰"
           modules={this.modules}

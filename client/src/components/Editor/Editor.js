@@ -23,7 +23,7 @@ const editor = props => {
                     <Form.Group>
                         <Form.Label>Select type</Form.Label>
                         <Form.Control required as="select" name='category' onChange={props.change}>
-                            <option disabled selected>Select appropriate type</option>
+                            <option defaultValue="0" disabled selected>Select appropriate type</option>
                             {modules.map((type, index) => <option key={index}>{helper.capitalize(type)}</option>)}
                         </Form.Control>
                     </Form.Group>
