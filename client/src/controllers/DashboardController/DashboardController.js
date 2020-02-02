@@ -6,6 +6,8 @@ import Resource from '../Resource/Resource';
 
 import io from 'socket.io-client';
 
+import Notification from '../../components/Notification/Notification';
+
 class DashboardController extends Component {
     constructor(props) {
         super(props)
@@ -15,6 +17,8 @@ class DashboardController extends Component {
     state = {
         filter: 'all',
         search: '',
+        notifications: null,
+        socket_uri: 'http://localhost:3001'
     };
 
     handler(e, param) {
@@ -28,11 +32,27 @@ class DashboardController extends Component {
         })
     };
 
-    render() {
-        let notif = io('http://localhost:3001/socket/notification')
-        notif.on('connect',  () => {
-            notif.emit('jao majko')
+    componentDidMount() {
+        let socket = io(this.state.socket_uri)
+
+        socket.on('notifications', data => {
+            this.setState({
+                notifications: data
+            })
         })
+    }
+
+    componentDidUpdate() {
+        let socket = io(this.state.socket_uri)
+
+        socket.on('notifications', data => {
+            this.setState({
+                notifications: data
+            })
+        })
+    }
+
+    render() {
         return (
             <Fragment>
                 <Navigation
@@ -40,6 +60,7 @@ class DashboardController extends Component {
                     handleClick={e => this.handler(e, 'click')}
                     show={true}
                 />
+                <Notification notification={this.state.notifications} />
                 <Frame>
                     <Resource
                         path={`/api/v1/documents?filter=${this.state.filter}`}

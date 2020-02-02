@@ -3,7 +3,7 @@ require('dotenv').config(); // Sets up dotenv as soon as our application starts
 const
     express = require('express'),
     http = require('http'),
-    socketService = require('./services/socket/socket'),
+    socketio = require('socket.io'),
     bodyParser = require('body-parser'),
     logger = require('morgan'),
     routes = require('./routes/index.js');
@@ -14,10 +14,16 @@ const router = express.Router();
 const server = http.createServer(app)
 
 // INIT SOCKER SERVICE
-let _io = socketService.init(server)
-_io.of('/socket/notification').on('connection', (socket) => {
-    socket.emit('kurcina')
+const io = socketio(server)
+let emitter = require('./controllers/events/Event')
+let saveEmitter = emitter.myEmitter;
+
+io.on('connect', socket => {
+    saveEmitter.on('notification', prop => {
+        socket.emit('notifications', prop)
+    })
 })
+
 
 const environment = process.env.NODE_ENV; // development
 const port = process.env.PORT || 3001

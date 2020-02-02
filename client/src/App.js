@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import AuthController from './controllers/AuthController/AuthController';
 import AuthenticationController from './controllers/AuthenticationController/AuthenticationController';
