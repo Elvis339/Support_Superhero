@@ -15,7 +15,6 @@ class DashboardController extends Component {
         search: '',
     };
 
-
     handler(e, param) {
         if (param === 'click') {
             return this.setState({
@@ -33,6 +32,7 @@ class DashboardController extends Component {
                 <Navigation
                     handleChange={e => this.handler(e, 'change')}
                     handleClick={e => this.handler(e, 'click')}
+                    show={true}
                 />
                 <Frame>
                     <Resource
@@ -44,7 +44,7 @@ class DashboardController extends Component {
                                         <Fragment key={index}>
                                             <Card
                                                 title={val.title}
-                                                body={val.body}
+                                                // body={val.body}
                                                 uri={val._id}
                                             />
                                         </Fragment>

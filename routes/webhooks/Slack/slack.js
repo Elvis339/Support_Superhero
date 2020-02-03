@@ -1,6 +1,5 @@
 const
-  controller = require('../../../controllers/Webhooks/WebhookController'),
-  auth = require('../../../middleware/auth');
+  controller = require('../../../modules/Slack/Slack');
 
 module.exports = (router) => {
   router.route('/webhook/slack')

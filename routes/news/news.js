@@ -5,7 +5,6 @@ const
 module.exports = (router) => {
   router.route('/news')
     .post(controller.addNews)
-    .get(controller.getNews)
 
   router.route('/news/today')
     .get(auth, controller.getNewsToday)

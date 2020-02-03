@@ -21,10 +21,10 @@ module.exports = {
             for(let _module of APP_MODULES) {
                 if (query === _module) {
                     if (_module === 'all') {
-                        documents = await Documents.find({ });
+                        documents = await Documents.find({ }).limit(10).sort({ createdAt: -1 });
                         return res.status(200).send(documents)
                     }
-                    documents = await Documents.find({ category: _module });
+                    documents = await Documents.find({ category: _module }).limit(10).sort({ createdAt: -1 });
                     return res.status(200).send(documents)
                 }
             }
