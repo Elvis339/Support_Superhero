@@ -6,4 +6,7 @@ module.exports = (router) => {
   router.route('/documents')
     .get(auth, controller.getDocuments)
     .post(auth, controller.addDocument)
+
+  router.route('/documents/search')
+    .get(controller.searchDocuments)
 };

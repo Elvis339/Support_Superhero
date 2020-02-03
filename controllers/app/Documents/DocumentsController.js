@@ -1,6 +1,7 @@
 require('../../../db/database')
 const
-    Documents = require('../../../models/DocumentsModel');
+    Documents = require('../../../models/DocumentsModel'),
+    { addDocumentToElastic, searchDocumentElastic } = require('../../../services/elasticsearch/Elasticsearch');
 
 const APP_MODULES = [
     'all',
@@ -43,6 +44,7 @@ module.exports = {
 
         try {
             let doc = await document.save()
+            await addDocumentToElastic(req.body)
             res.status(201).send(doc)
         } catch (error) {
             res.status(406).send({
@@ -52,4 +54,16 @@ module.exports = {
             })
         }
     },
+
+    searchDocuments: async (req, res) => {
+        try {
+            let query = req.query
+            let result = await searchDocumentElastic(query.title)
+            res.status(200).send(result)
+        } catch (error) {
+            res.status(500).send({
+                error: error.toString()
+            })
+        }
+    }
 }

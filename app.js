@@ -4,6 +4,7 @@ const
     express = require('express'),
     http = require('http'),
     socketio = require('socket.io'),
+    { elastic, addDocument } = require('./services/elasticsearch/Elasticsearch'),
     bodyParser = require('body-parser'),
     logger = require('morgan'),
     routes = require('./routes/index.js');
@@ -44,8 +45,14 @@ if (environment === 'production') {
     app.use('/api/v1', routes(router))
 }
 
-server.listen(port, () => {
-    console.log(`Server now listening at http://localhost:${port}`);
-});
+elastic.ping().then(res => {
+    if (res.statusCode !== 200) throw new Error()
+    return server.listen(port, () => {
+        console.log(`Server now listening at http://localhost:${port}`);
+    });
+}).catch(error => {
+    console.log("Elasticsearch server not responding...")
+    process.exit(1);
+})
 
 module.exports = app;
