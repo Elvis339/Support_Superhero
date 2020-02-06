@@ -16,11 +16,12 @@ const server = http.createServer(app)
 
 // INIT SOCKER SERVICE
 const io = socketio(server)
+process.setMaxListeners(0);
 let emitter = require('./controllers/events/Event')
 let saveEmitter = emitter.myEmitter;
 
 io.on('connect', socket => {
-    saveEmitter.on('notification', prop => {
+    saveEmitter.once('notification', prop => {
         socket.emit('notifications', prop)
     })
 })

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, NavDropdown, Form, Button, FormControl } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import logout from '../../../helpers/logoff';
 import helpers from '../../../helpers/helpers';
 
@@ -36,14 +36,11 @@ const navigation = props => {
                     </NavDropdown>
                     <Link className='nav-link' to='/tasks'>Tasks</Link>
                     <Link className='nav-link' to='/news'>News</Link>
+                    <Link className='nav-link' to='/search'>Search</Link>
                     {props.show ? <NavDropdown title="Select filter" id="basic-nav-dropdown">
                         {modules.map((module, index) => <NavDropdown.Item key={index} name='filter' onClick={props.handleClick}>{helpers.capitalize(module)}</NavDropdown.Item>)}
                     </NavDropdown> : null}
                 </Nav>
-                <Form inline>
-                    <FormControl onChange={props.handleChange} name='search' type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-dark">Search</Button>
-                </Form>
             </Navbar.Collapse>
         </Navbar>
     )

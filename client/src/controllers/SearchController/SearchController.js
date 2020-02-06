@@ -1,44 +1,44 @@
-import React, { Component, Fragment } from 'react';
-import Navigation from '../../components/Layout/Navigation/Navigation';
-import Frame from '../../components/Layout/Frame/Frame';
-import Card from '../../components/Layout/Cards/Cards';
+import React, { Fragment, Component } from 'react'
+import Search from '../../components/Search/Search';
 import Resource from '../Resource/Resource';
+import Card from '../../components/Layout/Cards/Cards';
+import Frame from '../../components/Layout/Frame/Frame';
+import axios from 'axios';
 
-class DashboardController extends Component {
+class SearchController extends Component {
     constructor(props) {
         super(props)
-        this.handler.bind(this);
-    };
+        this.handleChange.bind(this)
+    }
 
     state = {
-        filter: 'all',
-    };
+        search: null,
+    }
 
-    handler(e) {
+    handleChange(e) {
+        e.preventDefault()
         return this.setState({
-            [e.target.name]: String(e.target.textContent).toLocaleLowerCase()
+            search: e.target.value.toLowerCase()
         })
-    };
+    }
 
     render() {
         return (
             <Fragment>
-                <Navigation
-                    handleClick={e => this.handler(e)}
-                    show={true}
+                <Search
+                    state={this.state.search}
+                    handleChange={e => this.handleChange(e)}
                 />
                 <Frame>
                     <Resource
-                        path={`/api/v1/documents?filter=${this.state.filter}`}
+                        path={`/api/v1/documents/search?title=${this.state.search}`}
                         render={
                             data => {
                                 return data.payload.map((val, index) => {
                                     return (
                                         <Fragment key={index}>
                                             <Card
-                                                title={val.title}
-                                                // body={val.body}
-                                                uri={val._id}
+                                                title={val._source.title}
                                             />
                                         </Fragment>
                                     )
@@ -50,7 +50,6 @@ class DashboardController extends Component {
             </Fragment>
         )
     }
+}
 
-};
-
-export default DashboardController;
+export default SearchController;

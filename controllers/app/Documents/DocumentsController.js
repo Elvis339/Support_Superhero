@@ -43,8 +43,8 @@ module.exports = {
         const document = new Documents(req.body)
 
         try {
-            let doc = await document.save()
             await addDocumentToElastic(req.body)
+            let doc = await document.save()
             res.status(201).send(doc)
         } catch (error) {
             res.status(406).send({
