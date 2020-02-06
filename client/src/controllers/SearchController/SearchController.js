@@ -3,7 +3,6 @@ import Search from '../../components/Search/Search';
 import Resource from '../Resource/Resource';
 import Card from '../../components/Layout/Cards/Cards';
 import Frame from '../../components/Layout/Frame/Frame';
-import axios from 'axios';
 
 class SearchController extends Component {
     constructor(props) {

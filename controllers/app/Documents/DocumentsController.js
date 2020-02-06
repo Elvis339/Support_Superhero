@@ -1,5 +1,6 @@
 require('../../../db/database')
 const
+    moongose = require('mongoose'),
     Documents = require('../../../models/DocumentsModel'),
     { addDocumentToElastic, searchDocumentElastic } = require('../../../services/elasticsearch/Elasticsearch');
 
@@ -41,7 +42,8 @@ module.exports = {
 
     addDocument: async (req, res) => {
         const document = new Documents(req.body)
-
+        // Allow to add larger documents 
+        document.db.db.admin().command({ setParameter: 1, failIndexKeyTooLong: false })
         try {
             await addDocumentToElastic(req.body)
             let doc = await document.save()

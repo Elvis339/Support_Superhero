@@ -19,16 +19,16 @@ module.exports = {
         }
     },
 
-    searchDocumentElastic: async (titleQuery) => {
+    searchDocumentElastic: async query => {
         try {
             const result = await client.search({
                 index: 'documents',
                 body: {
                     query: {
                         multi_match: {
-                            query: titleQuery,
-                            fields: ['title', 'category'],
-                            fuzziness: 2
+                            query,
+                            fields: ['title', 'category', 'body'],
+                            fuzziness: 1
                         }
                     }
                 }
