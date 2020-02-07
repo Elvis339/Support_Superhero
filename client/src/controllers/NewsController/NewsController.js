@@ -4,8 +4,6 @@ import NewsMessage from '../../components/News/Layout/NewsInfo/NewsInfo';
 import ActivityHeader from '../../components/News/Layout/Header/ActivityHeader';
 
 import { Container } from 'react-bootstrap';
-
-import io from 'socket.io-client'
 class NewsController extends Component {
     constructor(props) {
         super(props)

@@ -5,6 +5,7 @@ import AuthenticationController from './controllers/AuthenticationController/Aut
 import DashboardController from './controllers/DashboardController/DashboardController';
 import NewsController from './controllers/NewsController/NewsController';
 import ActiveCollabController from './controllers/ActiveCollabController/AcApiController';
+import SearchController from './controllers/SearchController/SearchController';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Editor from './controllers/EditorController/EditorController';
@@ -21,6 +22,7 @@ function App() {
           <Route path={'/add'} exact component={Editor} />
           <Route path={'/news'} exact component={NewsController} />
           <Route path={'/tasks'} exact component={ActiveCollabController} />
+          <Route path={'/search'} exact component={SearchController} />
         </AuthController>
       </Switch>
     </BrowserRouter>

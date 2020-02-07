@@ -1,6 +1,8 @@
 require('../../../db/database')
 const
-    Documents = require('../../../models/DocumentsModel');
+    moongose = require('mongoose'),
+    Documents = require('../../../models/DocumentsModel'),
+    { addDocumentToElastic, searchDocumentElastic } = require('../../../services/elasticsearch/Elasticsearch');
 
 const APP_MODULES = [
     'all',
@@ -40,8 +42,10 @@ module.exports = {
 
     addDocument: async (req, res) => {
         const document = new Documents(req.body)
-
+        // Allow to add larger documents 
+        document.db.db.admin().command({ setParameter: 1, failIndexKeyTooLong: false })
         try {
+            await addDocumentToElastic(req.body)
             let doc = await document.save()
             res.status(201).send(doc)
         } catch (error) {
@@ -52,4 +56,16 @@ module.exports = {
             })
         }
     },
+
+    searchDocuments: async (req, res) => {
+        try {
+            let query = req.query
+            let result = await searchDocumentElastic(query.title)
+            res.status(200).send(result)
+        } catch (error) {
+            res.status(500).send({
+                error: error.toString()
+            })
+        }
+    }
 }

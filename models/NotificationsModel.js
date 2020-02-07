@@ -13,6 +13,7 @@ const notificationsSchema = new mongoose.Schema({
     type: {
         type: String,
         enum: [
+            'App',
             'SlackWebhook',
             'CrispWebhook',
             'HelpScoutWebhook'

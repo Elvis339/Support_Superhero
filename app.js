@@ -4,6 +4,7 @@ const
     express = require('express'),
     http = require('http'),
     socketio = require('socket.io'),
+    { elastic } = require('./services/elasticsearch/Elasticsearch'),
     bodyParser = require('body-parser'),
     logger = require('morgan'),
     routes = require('./routes/index.js');
@@ -15,11 +16,12 @@ const server = http.createServer(app)
 
 // INIT SOCKER SERVICE
 const io = socketio(server)
+process.setMaxListeners(0);
 let emitter = require('./controllers/events/Event')
 let saveEmitter = emitter.myEmitter;
 
 io.on('connect', socket => {
-    saveEmitter.on('notification', prop => {
+    saveEmitter.once('notification', prop => {
         socket.emit('notifications', prop)
     })
 })
@@ -44,8 +46,16 @@ if (environment === 'production') {
     app.use('/api/v1', routes(router))
 }
 
-server.listen(port, () => {
-    console.log(`Server now listening at http://localhost:${port}`);
-});
+
+process.on('warning', e => console.warn(e.stack));
+
+elastic.ping().then(() => {
+    return server.listen(port, () => {
+        console.log(`Server now listening at http://localhost:${port}`);
+    });
+}).catch(() => {
+    console.log("Elasticsearch server not responding...")
+    process.exit(1);
+})
 
 module.exports = app;

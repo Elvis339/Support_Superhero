@@ -12,17 +12,11 @@ class DashboardController extends Component {
 
     state = {
         filter: 'all',
-        search: '',
     };
 
-    handler(e, param) {
-        if (param === 'click') {
-            return this.setState({
-                [e.target.name]: String(e.target.textContent).toLocaleLowerCase()
-            })
-        }
+    handler(e) {
         return this.setState({
-            [e.target.name]: String(e.target.value).toLocaleLowerCase()
+            [e.target.name]: String(e.target.textContent).toLocaleLowerCase()
         })
     };
 
@@ -30,8 +24,7 @@ class DashboardController extends Component {
         return (
             <Fragment>
                 <Navigation
-                    handleChange={e => this.handler(e, 'change')}
-                    handleClick={e => this.handler(e, 'click')}
+                    handleClick={e => this.handler(e)}
                     show={true}
                 />
                 <Frame>

@@ -3,6 +3,7 @@ let
     myEmitter = new EventEmitter();
 
 [
+    'App',
     'SlackWebhook',
     'CrispWebhook',
     'HelpScoutWebhook'

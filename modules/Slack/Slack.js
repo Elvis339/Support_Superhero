@@ -10,7 +10,7 @@ module.exports = {
             const { user_name, command, text } = req.body
 
             if (command !== '/support') {
-                message = `Wrong command or channel`;
+                message = 'Wrong command or channel';
                 status = 406;
                 return res.status(status).send({
                     message,
