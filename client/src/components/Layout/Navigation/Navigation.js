@@ -12,7 +12,8 @@ let modules = [
     'notes',
     'expenses',
     'activity',
-    'payments'
+    'payments',
+    'all'
 ]
 
 const navigation = props => {
@@ -38,7 +39,7 @@ const navigation = props => {
                     <Link className='nav-link' to='/news'>News</Link>
                     <Link className='nav-link' to='/search'>Search</Link>
                     {props.show ? <NavDropdown title="Select filter" id="basic-nav-dropdown">
-                        {modules.map((module, index) => <NavDropdown.Item key={index} name='filter' onClick={props.handleClick}>{helpers.capitalize(module)}</NavDropdown.Item>)}
+                        { modules.map((module, index) => <NavDropdown.Item key={index} name='filter' onClick={props.handleClick}>{helpers.capitalize(module)}</NavDropdown.Item>) }
                     </NavDropdown> : null}
                 </Nav>
             </Navbar.Collapse>

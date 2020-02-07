@@ -1,8 +1,9 @@
 import React, { Fragment, Component } from 'react'
+import ReactHtmlParser from 'react-html-parser'
 import Search from '../../components/Search/Search';
 import Resource from '../Resource/Resource';
-import Card from '../../components/Layout/Cards/Cards';
-import Frame from '../../components/Layout/Frame/Frame';
+import Collapsible from '../../controllers/LayoutController/Collapsible/Collapsible';
+import { Card, Container } from 'react-bootstrap'
 
 class SearchController extends Component {
     constructor(props) {
@@ -28,24 +29,28 @@ class SearchController extends Component {
                     state={this.state.search}
                     handleChange={e => this.handleChange(e)}
                 />
-                <Frame>
-                    <Resource
-                        path={`/api/v1/documents/search?title=${this.state.search}`}
-                        render={
-                            data => {
-                                return data.payload.map((val, index) => {
-                                    return (
-                                        <Fragment key={index}>
-                                            <Card
-                                                title={val._source.title}
-                                            />
-                                        </Fragment>
-                                    )
-                                })
-                            }
+                <Resource
+                    path={`/api/v1/documents/search?title=${this.state.search}`}
+                    render={
+                        data => {
+                            return data.payload.map((val, index) => {
+                                return (
+                                    <Fragment key={index}>
+                                        <Container className='my-3'>
+                                            <Card body>
+                                                <Collapsible
+                                                    title={val._source.title}
+                                                >
+                                                    {ReactHtmlParser(val._source.body)}
+                                                </Collapsible>
+                                            </Card>
+                                        </Container>
+                                    </Fragment>
+                                )
+                            })
                         }
-                    />
-                </Frame>
+                    }
+                />
             </Fragment>
         )
     }

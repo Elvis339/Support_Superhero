@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
-import { Form, FormControl, Button } from 'react-bootstrap';
+import { Form, FormControl } from 'react-bootstrap';
 import Navigation from '../Layout/Navigation/Navigation';
-import Spinner from '../Layout/Spinner/Spinner';
 
 const search = props => {
     return (
