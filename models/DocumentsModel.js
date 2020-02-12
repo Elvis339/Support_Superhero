@@ -1,5 +1,35 @@
-const
-    mongoose = require('mongoose');
+const mongoose = require('mongoose');
+
+const filesSchema = new mongoose.Schema({
+    type: {
+        type: String,
+        default: 'LocalAttachment'
+    },
+    original_name: {
+        type: String,
+        required: true
+    },
+    mimetype: {
+        type: String,
+        required: true
+    },
+    path: {
+        type: String,
+        required: true
+    },
+    size: {
+        type: Number,
+        required: true
+    },
+    created_at: {
+        default: Date.now,
+        type: Number,
+    },
+    document_id: {
+        ref: 'Documents',
+        type: mongoose.Schema.Types.ObjectId,
+    }
+})
 
 const documentsSchema = new mongoose.Schema({
     title: {
@@ -30,9 +60,7 @@ const documentsSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    files: [
-        Buffer
-    ]
+    files: [filesSchema]
 }, {
     timestamps: true
 })

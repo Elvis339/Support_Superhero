@@ -1,6 +1,5 @@
-const
-  controller = require('../../controllers/app/Users/UserController'),
-  auth = require('../../middleware/auth');
+const controller = require('../../controllers/app/Users/UserController');
+const auth = require('../../middleware/auth');
 
 module.exports = (router) => {
   // Register

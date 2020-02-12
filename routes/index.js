@@ -1,9 +1,8 @@
-const 
-  users = require('./users/users'),
-  documents = require('./documents/documents'),
-  news = require('./news/news'),
-  activecollab_api = require('./ActiveCollab_API/activecollab_api'),
-  slackWebhook = require('./webhooks/Slack/slack');
+const users = require('./users/users')
+const documents = require('./documents/documents')
+const news = require('./news/news')
+const activecollab_api = require('./ActiveCollab_API/activecollab_api')
+const slackWebhook = require('./webhooks/Slack/slack');
 
 module.exports = (router) => {
   users(router);

@@ -1,6 +1,7 @@
-const
-    fs = require('fs'),
-    path = require('path');
+const fs = require('fs')
+const path = require('path')
+const multer = require('multer')
+const crypto = require('crypto')
 
 module.exports = {
     GET_ROOT_PATH: dirname => {
@@ -29,4 +30,23 @@ module.exports = {
 
         return `${year}-${month}-${day}`;
     },
+
+    documentsUpload() {
+        const root_dir = path.dirname(require.main.filename)
+        const uploads_directory = path.join(root_dir, 'uploads')
+
+        if (!fs.existsSync(uploads_directory)) {
+            fs.mkdirSync(uploads_directory)
+        }
+
+        const storage = multer.diskStorage({
+            destination: function (req, file, cb) {
+                cb(null, uploads_directory);
+            },
+            filename: function (req, file, cb) {
+                cb(null, crypto.randomBytes(48).toString('base64'))
+            },
+        })
+        return multer({ storage, limits: { fileSize: 2147483648 } }) // 2GB
+    }
 }

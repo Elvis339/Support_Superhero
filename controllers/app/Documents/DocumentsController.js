@@ -14,15 +14,16 @@ const APP_MODULES = [
     'activity',
     'payments'
 ]
+
 module.exports = {
     getDocuments: async (req, res) => {
         let documents = null;
         try {
             let query = req.query.filter;
-            for(let _module of APP_MODULES) {
+            for (let _module of APP_MODULES) {
                 if (query === _module) {
                     if (_module === 'all') {
-                        documents = await Documents.find({ }).limit(10).sort({ createdAt: -1 });
+                        documents = await Documents.find({}).limit(10).sort({ createdAt: -1 });
                         return res.status(200).send(documents)
                     }
                     documents = await Documents.find({ category: _module }).limit(10).sort({ createdAt: -1 });
@@ -40,7 +41,21 @@ module.exports = {
     },
 
     addDocument: async (req, res) => {
-        const document = new Documents(req.body)
+        const { title, category, body, created_by } = req.body
+        const { originalname, mimetype, path, size } = req.file
+
+        const document = new Documents({
+            title,
+            category,
+            body,
+            created_by,
+            files: [{
+                original_name: originalname,
+                mimetype,
+                path,
+                size
+            }]
+        })
         // Allow to add larger documents 
         document.db.db.admin().command({ setParameter: 1, failIndexKeyTooLong: false })
         try {

@@ -1,8 +1,7 @@
-const
-    emitter = require('../controllers/events/Event'),
-    saveEmitter = emitter.myEmitter,
-    NotificationsController = require('../controllers/app/Notifications/NotificationsController'),
-    mongoose = require('mongoose');
+const emitter = require('../controllers/events/Event');
+const saveEmitter = emitter.myEmitter
+const NotificationsController = require('../controllers/app/Notifications/NotificationsController')
+const mongoose = require('mongoose');
 
 const newsSchema = new mongoose.Schema({
     created_by: {
