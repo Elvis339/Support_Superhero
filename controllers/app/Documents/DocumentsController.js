@@ -1,6 +1,5 @@
 require('../../../db/database')
 const
-    moongose = require('mongoose'),
     Documents = require('../../../models/DocumentsModel'),
     { addDocumentToElastic, searchDocumentElastic } = require('../../../services/elasticsearch/Elasticsearch');
 

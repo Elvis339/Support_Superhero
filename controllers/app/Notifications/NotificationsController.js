@@ -2,8 +2,9 @@ const Notification = require('../../../models/NotificationsModel');
 const emitter = require('../../events/Event');
 const saveEmitter = emitter.myEmitter
 
+
 module.exports = {
-    onDBSave: async prop => {
+    onDBSave: async (prop, socket = null) => {
         try {
             let notification = new Notification(prop)
             await notification.save()
