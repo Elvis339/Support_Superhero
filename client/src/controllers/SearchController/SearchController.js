@@ -30,7 +30,7 @@ class SearchController extends Component {
                     handleChange={e => this.handleChange(e)}
                 />
                 <Resource
-                    path={`/api/v1/documents/search?title=${this.state.search}`}
+                    path={`/api/v1/documents/search?q=${this.state.search}`}
                     render={
                         data => {
                             return data.payload.map((val, index) => {

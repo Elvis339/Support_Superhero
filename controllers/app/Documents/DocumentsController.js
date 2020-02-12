@@ -28,21 +28,31 @@ module.exports = {
     },
 
     addDocument: async (req, res) => {
+        let document = null
         const { title, category, body, created_by } = req.body
-        const { originalname, mimetype, path, size } = req.file
 
-        const document = new Documents({
-            title,
-            category,
-            body,
-            created_by,
-            files: [{
-                original_name: originalname,
-                mimetype,
-                path,
-                size
-            }]
-        })
+        if (parseInt(req.body.hasFiles) === 1) {
+            const { originalname, mimetype, path, size } = req.file
+            document = new Documents({
+                title,
+                category,
+                body,
+                created_by,
+                files: [{
+                    original_name: originalname,
+                    mimetype,
+                    path,
+                    size
+                }]
+            })
+        } else {
+            document = new Documents({
+                title,
+                category,
+                body,
+                created_by,
+            })
+        }
         // Allow to add larger documents 
         document.db.db.admin().command({ setParameter: 1, failIndexKeyTooLong: false })
         try {
@@ -61,7 +71,7 @@ module.exports = {
     searchDocuments: async (req, res) => {
         try {
             let query = req.query
-            let result = await searchDocumentElastic(query.title)
+            let result = await searchDocumentElastic(query.q)
             res.status(200).send(result)
         } catch (error) {
             res.status(500).send({

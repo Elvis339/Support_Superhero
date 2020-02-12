@@ -34,6 +34,7 @@ module.exports = {
     documentsUpload() {
         const root_dir = path.dirname(require.main.filename)
         const uploads_directory = path.join(root_dir, 'uploads')
+        console.log(uploads_directory)
 
         if (!fs.existsSync(uploads_directory)) {
             fs.mkdirSync(uploads_directory)
@@ -44,7 +45,7 @@ module.exports = {
                 cb(null, uploads_directory);
             },
             filename: function (req, file, cb) {
-                cb(null, crypto.randomBytes(48).toString('base64'))
+                cb(null, crypto.randomBytes(48).toString('hex'))
             },
         })
         return multer({ storage, limits: { fileSize: 2147483648 } }) // 2GB
