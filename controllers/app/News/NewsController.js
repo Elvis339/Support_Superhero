@@ -1,7 +1,5 @@
-require('../../../db/database')
-const
-    News = require('../../../models/NewsModel'),
-    Utils = require('../../../utils');
+const News = require('../../../models/NewsModel')
+const Utils = require('../../../utils');
 
 module.exports = {
     addNews: async (req, res) => {

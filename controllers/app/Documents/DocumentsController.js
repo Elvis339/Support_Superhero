@@ -1,19 +1,6 @@
-require('../../../db/database')
-const
-    Documents = require('../../../models/DocumentsModel'),
-    { addDocumentToElastic, searchDocumentElastic } = require('../../../services/elasticsearch/Elasticsearch');
-
-const APP_MODULES = [
-    'all',
-    'shepherd',
-    'project',
-    'task',
-    'discussion',
-    'notes',
-    'expenses',
-    'activity',
-    'payments'
-]
+const Documents = require('../../../models/DocumentsModel')
+const { addDocumentToElastic, searchDocumentElastic } = require('../../../services/elasticsearch/Elasticsearch');
+const { APP_MODULES } = require('./APP_MODULES.d')
 
 module.exports = {
     getDocuments: async (req, res) => {
@@ -31,7 +18,7 @@ module.exports = {
                 }
             }
             // Change to appropriate error
-            throw new Error('Invalid query.')
+            throw new Error('Invalid query')
         } catch (error) {
             res.status(404).send({
                 error: error.toString(),

@@ -1,4 +1,5 @@
 require('dotenv').config(); // Sets up dotenv as soon as our application starts
+require('./db/database');
 
 const express = require('express')
 const http = require('http')
