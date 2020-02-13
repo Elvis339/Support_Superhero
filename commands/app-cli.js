@@ -31,5 +31,17 @@ yargs.version('1.0.0')
         handler(argv) {
             return commandos.fetchJoke()
         }
+    }).command({
+        command: "es:purge",
+        describe: "Remove documents index from elasticsearch",
+        handler(argv) {
+            return commandos.elasticPurge()
+        }
+    }).command({
+        command: "rm:uploads",
+        describe: "Delete uploads directory",
+        handler(argv) {
+            return commandos.deleteUploadDirectory()
+        }
     })
     .alias('h', 'help').argv

@@ -27,7 +27,7 @@ module.exports = {
                     query: {
                         multi_match: {
                             query,
-                            fields: ['title', 'category', 'body'],
+                            fields: ['title', 'body', 'category'],
                             fuzziness: 1
                         }
                     }

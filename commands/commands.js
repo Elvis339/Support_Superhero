@@ -6,6 +6,7 @@ const
     chalk = require('chalk'),
     axios = require('axios'),
     { GET_ROOT_PATH } = require('../utils'),
+    rimraf = require('rimraf'),
     log = console.log;
 
 let chalkStates = {
@@ -35,5 +36,17 @@ module.exports = {
         } catch (error) {
             chalkStates.error(error)
         }
-    }
+    },
+
+    elasticPurge: async () => {
+        try {
+            const res = await axios.delete('http://localhost:9200/documents/')
+            return chalkStates.success(res.data)
+        } catch (error) {
+            if (error.response.status === 404) return chalkStates.error('documents index is either deleted or never created')
+            return chalkStates.error(error.response)
+        }
+    },
+
+    deleteUploadDirectory: () => rimraf(path.join(GET_ROOT_PATH('commands'), 'uploads'), error => error ? chalkStates.error(error) : chalkStates.success("Uploads directory removed."))
 }

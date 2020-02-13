@@ -11,13 +11,16 @@ class Editor extends Component {
     super(props)
     this.quillRef = null;      // Quill instance
     this.reactQuillRef = null; // ReactQuill component
-    this.handleChange.bind(this)
-    this.handleForm.bind(this);
+    this.handleChangeInEditor.bind(this)
+    this.handleChangeInForm.bind(this);
+    this.onFileChange.bind(this);
 
     this.state = {
       text: '',
       title: '',
       category: '',
+      hasFiles: 0,
+      sharable_files: {},
       error: null,
       status: null
     }
@@ -47,23 +50,36 @@ class Editor extends Component {
     ],
   }
 
+  resetState() {
+    return this.setState({
+      text: '',
+      title: '',
+      category: '',
+      hasFiles: 0,
+      sharable_files: {},
+      error: null,
+      status: "Document added! 🚀"
+    })
+  }
+
   saveToDB = async e => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      let res = await axios.post('/api/v1/documents',
-        {
-          title: this.state.title === '' ? Error('Empty!') : this.state.title,
-          category: this.state.category,
-          body: this.state.text === '' ? Error('Empty!') : this.state.text,
-          created_by: window.localStorage.getItem('created_by'),
-        },
-        { headers: { "Authorization": `Bearer: ${getJwt()}` } }
-      )
-      if (res.status === 201) {
-        this.setState({
-          status: "Document added! 🚀"
-        })
-      }
+      let formData = new FormData()
+      formData.append('title', this.state.title === '' ? Error('Empty!') : this.state.title)
+      formData.append('body', this.state.text === '' ? Error('Empty!') : this.state.text)
+      formData.append('category', this.state.category)
+      formData.append('hasFiles', this.state.hasFiles)
+      formData.append('sharable_files', this.state.sharable_files)
+      formData.append('created_by', window.localStorage.getItem('created_by'))
+
+      let res = await axios.post('/api/v1/documents', formData, {
+        headers: {
+          "Authorization": `Bearer: ${getJwt()}`,
+        }
+      })
+
+      if (res.status === 201) return this.resetState()
     } catch (error) {
       this.setState({
         error
@@ -71,15 +87,22 @@ class Editor extends Component {
     }
   }
 
-  handleChange(value) {
+  handleChangeInEditor(value) {
     this.setState({
       text: value,
     })
   }
 
-  handleForm(e) {
+  handleChangeInForm(e) {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  onFileChange(e) {
+    this.setState({
+      hasFiles: this.state.hasFiles === 0 ? 1 : 0,
+      sharable_files: e.target.files[0]
     })
   }
 
@@ -87,20 +110,21 @@ class Editor extends Component {
     return (
       <EditorComponent
         saveToDB={e => this.saveToDB(e)}
-        change={e => this.handleForm(e)}
+        change={e => this.handleChangeInForm(e)}
+        onFileChange={e => this.onFileChange(e)}
       >
-        {this.state.error ? <Alert variant='danger' title='Network tab has more info...' /> : null}
-        {this.state.status ? <Alert variant='success' title={this.state.status} /> : null}
         <ReactQuill
           placeholder="Make support life easier. 🥰"
           modules={this.modules}
           ref={(el) => { this.reactQuillRef = el }}
           theme={'snow'}
-          onChange={value => this.handleChange(value)}
+          onChange={value => this.handleChangeInEditor(value)}
         />
         <hr />
         <h3 className='text-center my-2'>Live preview...</h3>
         <div dangerouslySetInnerHTML={{ __html: this.state.text }}></div>
+        {this.state.error ? <Alert variant='danger' title='Network tab has more info...' /> : null}
+        {this.state.status ? <Alert variant='success' title={this.state.status} /> : null}
       </EditorComponent>
     )
   }
@@ -108,8 +132,30 @@ class Editor extends Component {
 
 export default Editor;
 
-// const 
-// editor = this.reactQuillRef.getEditor(),
-// unprivilegedEditor = this.reactQuillRef.makeUnprivilegedEditor(editor);
+  // saveToDB = async e => {
+  //   e.preventDefault();
+  //   try {
+  //     let res = await axios.post('/api/v1/documents',
+  //       {
+  //         title: this.state.title === '' ? Error('Empty!') : this.state.title,
+  //         category: this.state.category,
+  //         body: this.state.text === '' ? Error('Empty!') : this.state.text,
+  //         hasFiles: this.state.hasFiles,
+  //         sharable_files: this.state.sharable_files,
+  //         created_by: window.localStorage.getItem('created_by'),
+  //       },
+  //       {
+  //         headers: {
+  //           "Authorization": `Bearer: ${getJwt()}`,
+  //         }
+  //       }
+  //     )
 
-// console.log(unprivilegedEditor.getHTML())
+  //     if (res.status === 201) return this.resetState()
+  //     console.log(this.state)
+  //   } catch (error) {
+  //     this.setState({
+  //       error
+  //     })
+  //   }
+  // }

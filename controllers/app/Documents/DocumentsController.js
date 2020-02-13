@@ -56,7 +56,13 @@ module.exports = {
         // Allow to add larger documents 
         document.db.db.admin().command({ setParameter: 1, failIndexKeyTooLong: false })
         try {
-            await addDocumentToElastic(req.body)
+            const { title, body, category } = req.body
+            let elastic = {
+                title,
+                body,
+                category
+            }
+            await addDocumentToElastic(elastic)
             let doc = await document.save()
             res.status(201).send(doc)
         } catch (error) {

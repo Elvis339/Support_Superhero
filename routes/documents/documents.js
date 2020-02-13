@@ -6,7 +6,7 @@ const { documentsUpload, randomHash } = require('../../utils')
 module.exports = (router) => {
   router.route('/documents')
     .get(auth, controller.getDocuments)
-    .post(auth, documentsUpload(randomHash).single('client-documents'), controller.addDocument)
+    .post(auth, documentsUpload(randomHash).single('sharable_files'), controller.addDocument)
 
   router.route('/documents/search')
     .get(controller.searchDocuments)
