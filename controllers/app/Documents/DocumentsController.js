@@ -80,8 +80,10 @@ module.exports = {
             let result = await searchDocumentElastic(query.q)
             res.status(200).send(result)
         } catch (error) {
-            res.status(500).send({
-                error: error.toString()
+            res.status(404).send({
+                err: error.toString(),
+                message: "Not found",
+                status: 404,
             })
         }
     }

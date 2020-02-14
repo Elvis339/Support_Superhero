@@ -1,13 +1,9 @@
-const TASK_LIST_IDS = [
-    45622,
-    42793,
-    42800
-]
+const { TASK_LIST_IDS } = require('./task_lists')
 
 module.exports = {
     getTaskLists: async (req, res) => {
         try {
-            const project = req.ActiveCollab
+            const project = await req.ActiveCollabProjects
             let task_list = project.task_lists.filter(list => TASK_LIST_IDS.includes(list.id))
             res.status(200).send(task_list)
         } catch (error) {
@@ -25,7 +21,7 @@ module.exports = {
 
             for (let _id of TASK_LIST_IDS) {
                 if (query === _id) {
-                    let filtered = req.ActiveCollabTasks.tasks.filter(item => item.task_list_id === query)
+                    let filtered = await req.ActiveCollabTasks.tasks.filter(item => item.task_list_id === query)
                     return res.status(200).send(filtered) 
                 }
                 continue
@@ -42,7 +38,7 @@ module.exports = {
 
     container: async (req, res) => {
         try {
-            let tasks = req.ActiveCollabTasks.tasks
+            let tasks = await req.ActiveCollabTasks.tasks
             res.status(200).send(tasks)
         } catch (error) {
             res.status(500).send({

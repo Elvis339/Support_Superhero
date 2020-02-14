@@ -1,7 +1,6 @@
 require('dotenv').config();
-const
-    yargs = require('yargs'),
-    commandos = require('./commands');
+const yargs = require('yargs')
+const commandos = require('./commands');
 
 yargs.version('1.0.0')
     .usage('Usage: nodejs-cli-app <command> [options]')
