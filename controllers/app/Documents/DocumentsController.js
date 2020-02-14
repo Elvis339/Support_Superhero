@@ -57,13 +57,16 @@ module.exports = {
         document.db.db.admin().command({ setParameter: 1, failIndexKeyTooLong: false })
         try {
             const { title, body, category } = req.body
+            let doc = await document.save()
+
             let elastic = {
+                docId: doc.id,
                 title,
                 body,
                 category
             }
+
             await addDocumentToElastic(elastic)
-            let doc = await document.save()
             res.status(201).send(doc)
         } catch (error) {
             res.status(406).send({

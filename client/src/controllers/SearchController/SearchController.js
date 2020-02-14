@@ -3,7 +3,7 @@ import ReactHtmlParser from 'react-html-parser'
 import Search from '../../components/Search/Search';
 import Resource from '../Resource/Resource';
 import Collapsible from '../../controllers/LayoutController/Collapsible/Collapsible';
-import { Card, Container } from 'react-bootstrap'
+import { Card, Container, Badge } from 'react-bootstrap'
 
 class SearchController extends Component {
     constructor(props) {
@@ -38,6 +38,8 @@ class SearchController extends Component {
                                     <Fragment key={index}>
                                         <Container className='my-3'>
                                             <Card body>
+                                                {/* @TODO: ADD DISPLAY OF ITEM */}
+                                                <a target="_blank" rel="noopener noreferrer" href={`${val._source}`} className="mx-1 badge badge-success">Visit</a>
                                                 <Collapsible
                                                     title={val._source.title}
                                                 >

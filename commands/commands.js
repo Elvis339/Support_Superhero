@@ -40,8 +40,8 @@ module.exports = {
 
     elasticPurge: async () => {
         try {
-            const res = await axios.delete('http://localhost:9200/documents/')
-            return chalkStates.success(res.data)
+            await axios.delete('http://localhost:9200/documents/')
+            return chalkStates.success(`Elastic cluster purged 🧹`)
         } catch (error) {
             if (error.response.status === 404) return chalkStates.error('documents index is either deleted or never created')
             return chalkStates.error(error.response)
