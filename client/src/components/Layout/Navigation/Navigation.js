@@ -17,9 +17,6 @@ let modules = [
 ]
 
 const navigation = props => {
-
-
-
     return (
         <Navbar bg="light" expand="lg">
             <Link to='/'>

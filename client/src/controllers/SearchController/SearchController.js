@@ -38,8 +38,7 @@ class SearchController extends Component {
                                     <Fragment key={index}>
                                         <Container className='my-3'>
                                             <Card body>
-                                                {/* @TODO: ADD DISPLAY OF ITEM */}
-                                                <a target="_blank" rel="noopener noreferrer" href={`${val._source}`} className="mx-1 badge badge-success">Visit</a>
+                                                <a href={`/view/${val._source.docId}`} className="mx-auto mt-1 btn btn-primary">Visit</a>
                                                 <Collapsible
                                                     title={val._source.title}
                                                 >

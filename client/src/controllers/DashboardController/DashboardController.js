@@ -38,7 +38,7 @@ class DashboardController extends Component {
                                             <Card
                                                 title={val.title}
                                                 // body={val.body}
-                                                uri={val._id}
+                                                uri={`/view/${val._id}`}
                                             />
                                         </Fragment>
                                     )

@@ -1,52 +1,67 @@
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
 require('dotenv').config(); // Sets up dotenv as soon as our application starts
 
-const
-    fs = require('fs'),
-    path = require('path'),
-    chalk = require('chalk'),
-    axios = require('axios'),
-    { GET_ROOT_PATH } = require('../utils'),
-    rimraf = require('rimraf'),
-    log = console.log;
+const fs = require('fs');
+const path = require('path');
+const chalk = require('chalk');
+const axios = require('axios');
+const rimraf = require('rimraf');
+const { GET_ROOT_PATH } = require('../utils');
 
-let chalkStates = {
-    error: (message) => { log(chalk.inverse.red(message)) },
-    success: (message) => { log(chalk.inverse.green(message)) }
-}
+const { log } = console;
+
+const chalkStates = {
+  error: (message) => {
+    log(chalk.inverse.red(message));
+  },
+  success: (message) => {
+    log(chalk.inverse.green(message));
+  },
+};
 
 module.exports = {
-    chalkStates,
+  chalkStates,
 
-    setState: command => {
-        let 
-            root_dir = GET_ROOT_PATH('commands'), 
-            _path = path.join(root_dir, 'state')
-            
-        fs.writeFileSync(_path, command)
-        process.env.NODE_ENV = command
-        console.log(process.env.NODE_ENV)
-    },
+  setState: (command) => {
+    const root_dir = GET_ROOT_PATH('commands');
+    // eslint-disable-next-line no-underscore-dangle
+    const _path = path.join(root_dir, 'state');
 
-    fetchJoke: async () => {
-        const API_URL = 'http://api.icndb.com/jokes/random'
+    fs.writeFileSync(_path, command);
+    process.env.NODE_ENV = command;
+    console.log(process.env.NODE_ENV);
+  },
 
-        try {
-            const response = await axios.get(API_URL)
-            return chalkStates.success(response.data.value.joke)
-        } catch (error) {
-            chalkStates.error(error)
-        }
-    },
+  fetchJoke: async () => {
+    const API_URL = 'http://api.icndb.com/jokes/random';
 
-    elasticPurge: async () => {
-        try {
-            await axios.delete('http://localhost:9200/documents/')
-            return chalkStates.success(`Elastic cluster purged 🧹`)
-        } catch (error) {
-            if (error.response.status === 404) return chalkStates.error('documents index is either deleted or never created')
-            return chalkStates.error(error.response)
-        }
-    },
+    try {
+      const response = await axios.get(API_URL);
+      return chalkStates.success(response.data.value.joke);
+    } catch (error) {
+      return chalkStates.error(error);
+    }
+  },
 
-    deleteUploadDirectory: () => rimraf(path.join(GET_ROOT_PATH('commands'), 'uploads'), error => error ? chalkStates.error(error) : chalkStates.success("Uploads directory removed."))
-}
+  deleteUploadDirectory: () => rimraf(path.join(GET_ROOT_PATH('commands'), 'uploads'), (error) => {
+    if (error) {
+      return chalkStates.error(error);
+    }
+    return chalkStates.success('Uploads directory removed 🎳🎳🎳🎳');
+  }),
+
+  elasticPurge: async () => {
+    try {
+      await axios.delete('http://localhost:9200/documents/');
+      return chalkStates.success('Elastic cluster purged 🧹🧹🧹🧹');
+    } catch (error) {
+      if (error.response.status === 404) {
+        return chalkStates.error(
+          'documents index is either deleted or never created',
+        );
+      }
+      return chalkStates.error(error.response);
+    }
+  },
+};

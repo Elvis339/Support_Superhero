@@ -1,28 +1,25 @@
-const 
-    mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-const notificationsSchema = new mongoose.Schema({
+const notificationsSchema = new mongoose.Schema(
+  {
     created_by: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     created_on: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     type: {
-        type: String,
-        enum: [
-            'App',
-            'SlackWebhook',
-            'CrispWebhook',
-            'HelpScoutWebhook'
-        ],
-    }
-}, {
-    timestamps: true
-})
+      type: String,
+      enum: ['App', 'SlackWebhook', 'CrispWebhook', 'HelpScoutWebhook'],
+    },
+  },
+  {
+    timestamps: true,
+  },
+);
 
-const Notifications = mongoose.model('Notifications', notificationsSchema)
+const Notifications = mongoose.model('Notifications', notificationsSchema);
 
-module.exports = Notifications
+module.exports = Notifications;
