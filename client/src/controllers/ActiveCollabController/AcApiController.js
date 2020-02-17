@@ -85,7 +85,7 @@ class ActiveCollabController extends Component {
                 />
                 {loading}
                 {this.state.error ? <Alert variant='danger' title='Network tab has more info...' /> : null}
-                <Frame>
+                <Frame row={true}>
                     <div className='mx-auto my-3 w-100'>
                         <Sidebar>
                             {task_list_name}

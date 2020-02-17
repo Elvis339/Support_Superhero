@@ -59,6 +59,26 @@ module.exports = {
     }
   },
 
+  getFile: async (req, res) => {
+    try {
+      const query = req.query.id;
+      const file = await Documents.findOne({ 'files._id': query });
+      if (!file) {
+        return res.status(404).send({
+          error: 'No file found',
+          status: 404,
+        });
+      }
+      return res.status(200).send(file.files);
+    } catch (error) {
+      res.status(500).send({
+        error: error.toString(),
+        message: 'Whooooops something went wrong',
+        status: 500,
+      });
+    }
+  },
+
   addDocument: async (req, res) => {
     let document = null;
     const {
@@ -79,7 +99,7 @@ module.exports = {
           {
             original_name: originalname,
             mimetype,
-            path,
+            path: path.split('/new-superhero')[1],
             size,
           },
         ],

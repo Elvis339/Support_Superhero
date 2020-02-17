@@ -20,6 +20,7 @@ const constructClient = async () => {
   }
 };
 
+// eslint-disable-next-line no-return-await
 const __client__ = (async () => await constructClient())();
 
 const activecollab_projects = async (req, res, next) => {

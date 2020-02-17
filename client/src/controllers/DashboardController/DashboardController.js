@@ -27,7 +27,7 @@ class DashboardController extends Component {
                     handleClick={e => this.handler(e)}
                     show={true}
                 />
-                <Frame>
+                <Frame row={true}>
                     <Resource
                         path={`/api/v1/documents?filter=${this.state.filter}`}
                         render={
@@ -37,8 +37,7 @@ class DashboardController extends Component {
                                         <Fragment key={index}>
                                             <Card
                                                 title={val.title}
-                                                // body={val.body}
-                                                uri={`/view/${val._id}`}
+                                                uri={`/document/${val._id}`}
                                             />
                                         </Fragment>
                                     )

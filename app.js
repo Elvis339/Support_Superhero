@@ -39,6 +39,7 @@ app.use(
     extended: true,
   }),
 );
+app.use('/uploads', express.static('uploads'));
 
 if (environment === 'production') {
   app.use('/api/v1', routes(router));

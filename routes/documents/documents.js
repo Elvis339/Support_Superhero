@@ -14,5 +14,7 @@ module.exports = (router) => {
 
   router.route('/document').get(auth, controller.getDocument);
 
+  router.route('/document-file').get(controller.getFile);
+
   router.route('/documents/search').get(controller.searchDocuments);
 };

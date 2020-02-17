@@ -38,7 +38,7 @@ class SearchController extends Component {
                                     <Fragment key={index}>
                                         <Container className='my-3'>
                                             <Card body>
-                                                <a href={`/view/${val._source.docId}`} className="mx-auto mt-1 btn btn-primary">Visit</a>
+                                                <a href={`/document/${val._source.docId}`} className="mx-auto mt-1 btn btn-primary">Visit</a>
                                                 <Collapsible
                                                     title={val._source.title}
                                                 >

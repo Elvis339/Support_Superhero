@@ -7,9 +7,9 @@ const frame = props => {
         <Fragment>
             <Notification />
             <Container>
-                <Row>
+                {props.row ? <Row>
                     {props.children}
-                </Row>
+                </Row> : props.children }
             </Container>
         </Fragment>
     )
