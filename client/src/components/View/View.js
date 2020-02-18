@@ -7,6 +7,10 @@ import CenterHorizontally from '../Layout/CenterHorizontaly/CenterHorizontaly';
 import Tooltip from '../Layout/Tooltip/Tooltip';
 import MediaRouter from './Clients/MediaRouter';
 
+/**
+ * @param {} props 
+ * Document view
+ */
 const view = props => {
     let URI = props.location.pathname.split('/')[2]
     return (

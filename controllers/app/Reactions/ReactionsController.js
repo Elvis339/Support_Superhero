@@ -4,8 +4,7 @@ module.exports = {
   postReaction: async (req, res) => {
     try {
       const query = req.query.id;
-      const document = await Document.findOneAndUpdate({ 'files._id': query }, { $push: { reactions: req.body } });
-      await document.save();
+      await Document.updateOne({ 'files._id': query }, { $push: { reactions: req.body } });
       res.status(201).send();
     } catch (error) {
       res.status(500).send({

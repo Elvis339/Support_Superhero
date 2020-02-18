@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-return-assign */
 const User = require('../../../models/UserModel');
 
 module.exports = {
@@ -63,7 +65,7 @@ module.exports = {
     }
   },
 
-  editMe: async (req, res, next) => {
+  editMe: async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ['name', 'email', 'password'];
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update));

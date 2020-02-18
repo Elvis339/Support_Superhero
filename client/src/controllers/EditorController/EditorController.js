@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactQuill from 'react-quill';
 import Alert from '../../components/Layout/Alerts/Alerts';
-import EditorComponent from '../../components/Editor/Editor';
+import AddDocument from '../../components/Document/AddDocument';
 
 import { getJwt } from '../../helpers/jwt';
 
@@ -108,7 +108,7 @@ class Editor extends Component {
 
   render() {
     return (
-      <EditorComponent
+      <AddDocument
         saveToDB={e => this.saveToDB(e)}
         change={e => this.handleChangeInForm(e)}
         onFileChange={e => this.onFileChange(e)}
@@ -125,7 +125,7 @@ class Editor extends Component {
         <div dangerouslySetInnerHTML={{ __html: this.state.text }}></div>
         {this.state.error ? <Alert variant='danger' title='Network tab has more info...' /> : null}
         {this.state.status ? <Alert variant='success' title={this.state.status} /> : null}
-      </EditorComponent>
+      </AddDocument>
     )
   }
 }
