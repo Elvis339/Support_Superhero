@@ -11,7 +11,7 @@ module.exports = {
       res.status(500).send({
         error: error.toString(),
         status: 500,
-        message: 'whhhoop',
+        message: 'Failed to submit reaction...',
       });
     }
   },

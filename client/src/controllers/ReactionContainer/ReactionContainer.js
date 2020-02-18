@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Button } from 'react-bootstrap';
 import ReactionForm from '../../components/Reactions/ReactionForm';
+import Alert from '../../components/Layout/Alerts/Alerts';
+import CenteredHorizontally from '../../components/Layout/CenterHorizontaly/CenterHorizontaly';
 import axios from 'axios';
 
 class Reaction extends Component {
@@ -15,6 +17,7 @@ class Reaction extends Component {
         file_id: this.props.URI,
         email: null,
         description: null,
+        status: false
     }
 
     async handleSubmit(e) {
@@ -51,6 +54,7 @@ class Reaction extends Component {
                 } catch (error) {
                     console.error(error)
                 }
+                this.setState({ status: this.state.status ? false : true })
                 break;
             case "No":
                 try {
@@ -63,6 +67,7 @@ class Reaction extends Component {
                 } catch (error) {
                     console.error(error)
                 }
+                this.setState({ status: this.state.status ? false : true })
                 break;
         }
     }
@@ -70,13 +75,18 @@ class Reaction extends Component {
     render() {
         return (
             <Fragment>
-                <h3 className='text-center'>Was this helpful?</h3>
-                <Button variant='primary' className='mx-2'
-                    onClick={e => this.handleReaction(e)}>Yes 😊</Button>
-                <ReactionForm
-                    handleSubmit={e => this.handleSubmit(e)}
-                    change={e => this.handleChange(e)}
-                />
+                <CenteredHorizontally>
+                    <h3 className='text-center'>Was this helpful?</h3>
+                    <Button variant='primary' className='mx-2'
+                        onClick={e => this.handleReaction(e)}>
+                            Yes 😊
+                    </Button>
+                    <ReactionForm
+                        handleSubmit={e => this.handleSubmit(e)}
+                        change={e => this.handleChange(e)}
+                    />
+                </CenteredHorizontally>
+                {this.state.status ? <Alert variant='success' title='Thank you!' /> : null}
             </Fragment>
         )
     }

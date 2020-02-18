@@ -12,7 +12,7 @@ class SearchController extends Component {
     }
 
     state = {
-        search: null,
+        search: '',
     }
 
     handleChange(e) {

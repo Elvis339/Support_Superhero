@@ -29,7 +29,6 @@ module.exports = {
           return res.status(200).send(documents);
         }
       }
-      // Change to appropriate error
       throw new Error('Invalid query');
     } catch (error) {
       res.status(404).send({
@@ -71,10 +70,10 @@ module.exports = {
       }
       return res.status(200).send(file.files);
     } catch (error) {
-      res.status(500).send({
+      res.status(404).send({
         error: error.toString(),
-        message: 'Whooooops something went wrong',
-        status: 500,
+        message: 'Couldn`t get file...',
+        status: 404,
       });
     }
   },

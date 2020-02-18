@@ -9,7 +9,7 @@ const ReactionForm = props => {
 
     return (
         <Fragment>
-            <Button variant='primary' className='mx-2' onClick={handleShow}>No 😔</Button>>
+            <Button variant='primary' className='mx-2' onClick={handleShow}>No 😔</Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Tell us why...</Modal.Title>
