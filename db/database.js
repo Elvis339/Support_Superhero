@@ -5,7 +5,7 @@ const databaseOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
-  useFindAndModify: false,
+  useFindAndModify: true,
 };
 
 mongoose.connect(connUri, databaseOptions, (err) => {

@@ -1,3 +1,4 @@
+/* eslint-disable no-confusing-arrow */
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
 require('dotenv').config(); // Sets up dotenv as soon as our application starts
