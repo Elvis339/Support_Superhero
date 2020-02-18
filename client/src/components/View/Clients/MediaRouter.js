@@ -6,7 +6,9 @@ const mediaRouter = props => {
     let mimetype = props.mimetype.split('/')[0]
     switch(mimetype) {
         case 'video':
-            return <Video 
+            return <Video
+                width={props.width}
+                height={props.height}
                 src={props.src}
                 url={`view/${props.url}`}
             />

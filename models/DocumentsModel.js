@@ -31,6 +31,17 @@ const filesSchema = new mongoose.Schema({
   },
 });
 
+const reactionsSchema = new mongoose.Schema(
+  {
+    reaction: { type: Number },
+    description: { type: String },
+    email: { type: String },
+  },
+  {
+    timestamps: true,
+  },
+);
+
 const documentsSchema = new mongoose.Schema(
   {
     title: {
@@ -62,6 +73,7 @@ const documentsSchema = new mongoose.Schema(
       required: true,
     },
     files: [filesSchema],
+    reactions: [reactionsSchema],
   },
   {
     timestamps: true,
