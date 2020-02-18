@@ -24,16 +24,6 @@ const chalkStates = {
 module.exports = {
   chalkStates,
 
-  setState: (command) => {
-    const root_dir = GET_ROOT_PATH('commands');
-    // eslint-disable-next-line no-underscore-dangle
-    const _path = path.join(root_dir, 'state');
-
-    fs.writeFileSync(_path, command);
-    process.env.NODE_ENV = command;
-    console.log(process.env.NODE_ENV);
-  },
-
   fetchJoke: async () => {
     const API_URL = 'http://api.icndb.com/jokes/random';
 
