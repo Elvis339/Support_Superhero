@@ -27,7 +27,7 @@ const ReactionForm = props => {
                             <Form.Label>Description</Form.Label>
                             <Form.Control as="textarea" rows="3" placeholder="Share your toughts with us" required maxLength={200} name='description' onChange={props.change} />
                         </Form.Group>
-                        <Button type="submit" variant="primary">
+                        <Button onClick={handleClose} type="submit" variant="primary">
                             Send 🤝
                         </Button>
                     </Form>
