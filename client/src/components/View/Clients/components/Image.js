@@ -4,7 +4,7 @@ import CenterHorizontally from '../../../Layout/CenterHorizontaly/CenterHorizont
 const image = props => (
     <Fragment>
         <CenterHorizontally>
-                <img alt='Sharable file' className='border py-2 px-2' src={props.src} /><br></br>
+                <img alt='Sharable file' className='border py-2 px-2 img-fluid' src={props.src} /><br></br>
         </CenterHorizontally>
     </Fragment>
 )

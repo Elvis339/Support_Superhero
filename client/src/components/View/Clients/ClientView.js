@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
-import Resource from '../../../controllers/Resource/Resource';
+import Resource from '../../../containers/Resource/Resource';
 import Frame from '../../Layout/Frame/Frame';
 import Centered from '../../Layout/Centered/Centered';
 import Spinner from '../../Layout/Spinner/Spinner';
 import MediaRouter from '../Clients/MediaRouter';
-import Reactions from '../../../controllers/ReactionContainer/ReactionContainer';
+import Reactions from '../../../containers/ReactionContainer/ReactionContainer';
 
 const clientView = props => {
     let URI = props.location.pathname.split('/')[3]

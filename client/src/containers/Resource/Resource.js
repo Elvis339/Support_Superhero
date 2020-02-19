@@ -35,7 +35,9 @@ class Resource extends Component {
 
     render() {
         if (this.state.error) {
-            console.log(`Delete 38 line in Resource.js this is for development only! ${this.state.error}`)
+            if (this.state.error.response.data.status === 404) {
+                return <Alert variant='warning' title='Not found...' />
+            }
             return <Alert variant='danger' title='Ooops, network tab has more info.' />
         } else if (this.state.loading) {
             return <Spinner animation='grow' size='lg' centered={true} />

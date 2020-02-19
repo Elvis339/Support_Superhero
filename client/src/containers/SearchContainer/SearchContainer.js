@@ -2,8 +2,8 @@ import React, { Fragment, Component } from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import Search from '../../components/Search/Search';
 import Resource from '../Resource/Resource';
-import Collapsible from '../../controllers/LayoutController/Collapsible/Collapsible';
-import { Card, Container, Badge } from 'react-bootstrap'
+import Collapsible from '../LayoutController/Collapsible/Collapsible';
+import { Card, Container } from 'react-bootstrap'
 
 class SearchController extends Component {
     constructor(props) {

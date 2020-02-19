@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import ReactHtmlParser from 'react-html-parser';
-import Resource from '../../controllers/Resource/Resource';
+import Resource from '../../containers/Resource/Resource';
 import Navigation from '../Layout/Navigation/Navigation';
 import Frame from '../Layout/Frame/Frame';
 import CenterHorizontally from '../Layout/CenterHorizontaly/CenterHorizontaly';
