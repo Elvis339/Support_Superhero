@@ -3,18 +3,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import logout from '../../../helpers/logoff';
 import helpers from '../../../helpers/helpers';
-
-let modules = [
-    'shepherd',
-    'project',
-    'task',
-    'discussion',
-    'notes',
-    'expenses',
-    'activity',
-    'payments',
-    'all'
-]
+import { APP_MODULES } from '../../../helpers/APP_MODULES.d'
 
 const navigation = props => {
     return (
@@ -36,7 +25,7 @@ const navigation = props => {
                     <Link className='nav-link' to='/news'>News</Link>
                     <Link className='nav-link' to='/search'>Search</Link>
                     {props.show ? <NavDropdown title="Select filter" id="basic-nav-dropdown">
-                        { modules.map((module, index) => <NavDropdown.Item key={index} name='filter' onClick={props.handleClick}>{helpers.capitalize(module)}</NavDropdown.Item>) }
+                        {APP_MODULES.map((module, index) => <NavDropdown.Item key={index} name='filter' onClick={props.handleClick}>{helpers.capitalize(module)}</NavDropdown.Item>)}
                     </NavDropdown> : null}
                 </Nav>
             </Navbar.Collapse>

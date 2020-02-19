@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable func-names */
 const mongoose = require('mongoose');
 
 const filesSchema = new mongoose.Schema({
@@ -54,11 +56,16 @@ const documentsSchema = new mongoose.Schema(
       enum: [
         'shepherd',
         'project',
-        'task',
-        'discussion',
-        'notes',
-        'expenses',
-        'activity',
+        'my-work',
+        'calendar',
+        'people',
+        'invoices',
+        'estimates',
+        'timesheet',
+        'reports',
+        'add-ons',
+        'system-settings',
+        'self-hosted',
         'payments',
       ],
     },
@@ -79,6 +86,15 @@ const documentsSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+documentsSchema.methods.toJSON = function () {
+  const document = this;
+  const docObject = document.toObject();
+
+  delete docObject.reactions;
+
+  return docObject;
+};
 
 const Documents = mongoose.model('Documents', documentsSchema);
 
