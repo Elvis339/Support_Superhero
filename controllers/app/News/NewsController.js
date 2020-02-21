@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const News = require('../../../models/NewsModel');
 const Utils = require('../../../utils');
 
@@ -11,8 +12,8 @@ module.exports = {
     } catch (error) {
       res.status(406).send({
         err: error.toString(),
-        message: "Not acceptable",
-        status: 406
+        message: 'Not acceptable',
+        status: 406,
       });
     }
   },
@@ -37,7 +38,7 @@ module.exports = {
       res.status(500).send({
         error: error.stack,
         message: error.toString(),
-        status: 500
+        status: 500,
       });
     }
   },
@@ -62,7 +63,7 @@ module.exports = {
       res.status(500).send({
         message: error.toString(),
         status: 500,
-        error: error.stack
+        error: error.stack,
       });
     }
   },

@@ -4,7 +4,7 @@ import Frame from '../../Layout/Frame/Frame';
 import Centered from '../../Layout/Centered/Centered';
 import Spinner from '../../Layout/Spinner/Spinner';
 import MediaRouter from '../Clients/MediaRouter';
-import Reactions from '../../../containers/ReactionContainer/ReactionContainer';
+import Reactions from '../../../containers/ReactionContainer/SubmitReactionContainer';
 
 const clientView = props => {
     let URI = props.location.pathname.split('/')[3]

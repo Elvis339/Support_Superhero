@@ -87,15 +87,6 @@ const documentsSchema = new mongoose.Schema(
   },
 );
 
-documentsSchema.methods.toJSON = function () {
-  const document = this;
-  const docObject = document.toObject();
-
-  delete docObject.reactions;
-
-  return docObject;
-};
-
 const Documents = mongoose.model('Documents', documentsSchema);
 
 module.exports = Documents;

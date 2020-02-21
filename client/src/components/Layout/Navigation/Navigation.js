@@ -24,6 +24,7 @@ const navigation = props => {
                     <Link className='nav-link' to='/tasks'>Tasks</Link>
                     <Link className='nav-link' to='/news'>News</Link>
                     <Link className='nav-link' to='/search'>Search</Link>
+                    {/* <Link className='nav-link' to='/statistics'>Statistics</Link> */}
                     {props.show ? <NavDropdown title="Select filter" id="basic-nav-dropdown">
                         {APP_MODULES.map((module, index) => <NavDropdown.Item key={index} name='filter' onClick={props.handleClick}>{helpers.capitalize(module)}</NavDropdown.Item>)}
                     </NavDropdown> : null}

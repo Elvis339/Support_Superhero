@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import ReactionForm from '../../components/Reactions/ReactionForm';
 import Alert from '../../components/Layout/Alerts/Alerts';
 import CenteredHorizontally from '../../components/Layout/CenterHorizontaly/CenterHorizontaly';
+import { getJwt } from '../../helpers/jwt';
 import axios from 'axios';
 
 class Reaction extends Component {
@@ -25,9 +26,13 @@ class Reaction extends Component {
         try {
             await axios.post(`/api/v1/reactions?id=${this.state.file_id}`, {
                 file_id: this.state.file_id,
-                reaction: this.state.reaction,
+                reaction: 0,
                 description: this.state.description,
                 email: this.state.email
+            }, {
+                headers: {
+                    "Authorization": `Bearer: ${getJwt()}`,
+                }
             })
         } catch (error) {
             console.error(error)
@@ -50,6 +55,10 @@ class Reaction extends Component {
                         reaction: 1,
                         description: this.state.description,
                         email: this.state.email
+                    }, {
+                        headers: {
+                            "Authorization": `Bearer: ${getJwt()}`,
+                        }
                     })
                 } catch (error) {
                     console.error(error)
@@ -63,6 +72,10 @@ class Reaction extends Component {
                         reaction: 0,
                         description: this.state.description,
                         email: this.state.email
+                    }, {
+                        headers: {
+                            "Authorization": `Bearer: ${getJwt()}`,
+                        }
                     })
                 } catch (error) {
                     console.error(error)
@@ -79,7 +92,7 @@ class Reaction extends Component {
                     <h3 className='text-center'>Was this helpful?</h3>
                     <Button variant='primary' className='mx-2'
                         onClick={e => this.handleReaction(e)}>
-                            Yes 😊
+                        Yes 😊
                     </Button>
                     <ReactionForm
                         handleSubmit={e => this.handleSubmit(e)}

@@ -8,6 +8,7 @@ import ViewComponent from './components/View/View';
 import NewsContainer from './containers/NewsContainer/NewsContainer';
 import ActiveCollabController from './containers/ActiveCollabController/ActiveCollabContainer';
 import SearchContainer from './containers/SearchContainer/SearchContainer';
+import ReactionStatistics from './components/ReactionStatistics/ReactionStatistics';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Editor from './containers/EditorContainer/EditorContainer';
@@ -27,6 +28,7 @@ function App() {
           <Route path={'/news'} exact={true} component={NewsContainer} />
           <Route path={'/tasks'} exact={true} component={ActiveCollabController} />
           <Route path={'/search'} exact={true} component={SearchContainer} />
+          <Route path={'/statistics'} exact={true} component={ReactionStatistics} />
         </AuthenticationComponent>
       </Switch>
     </BrowserRouter>

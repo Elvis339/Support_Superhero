@@ -2,11 +2,12 @@
   "name": "new-superhero",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "NODE_ENV=production node app.js",
     "server": "cross-env NODE_ENV=development nodemon app.js",
     "client": "npm start --prefix client",
+    "build_frontend": "cd client && npm run build && cd ..",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
     "debug": "nodemon --inspect app.js",
     "lint:test": "eslint --ignore-path .eslintignore .",

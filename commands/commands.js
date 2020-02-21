@@ -3,7 +3,6 @@
 /* eslint-disable camelcase */
 require('dotenv').config(); // Sets up dotenv as soon as our application starts
 
-const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 const axios = require('axios');
