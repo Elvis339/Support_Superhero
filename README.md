@@ -1,33 +1,29 @@
-# Node - React - JWT Authentication 
+# Requirements
 
-Boilerplate for running Node-React-JWT 
-
-### Why shoud I use this?
-
-After spending 72 hours finding the best practices on folder/code/jwt structure, here's the masterpeice 
-🧘‍ 
-
-Hope it will help you as much as it did me to **kickstart** your project.
+1. Node v12.16.1
+2. npm 6.13.4
+3. MongoDB v4.0.3
 
 # How to
 
 1. Setup
 
-This command will install all dependencies required for node & react
+This command will install all dependencies required for node & build react frontend.
 
 ```
-npm install && cd client/ && npm install
+sh start.sh  
+npm run start
 ```
 
 Don't forget to create your own .env file, here's an example:
 
 ```
-JWT_SECRET=randomTextLol
-MONGO_LOCAL_CONN_URL=mongodb://127.0.0.1:27017/random-db
-MONGO_DB_NAME=random-db
+JWT_SECRET=BigHashHere
+MONGO_LOCAL_CONN_URL=mongodb://127.0.0.1:27017/your-db-here
+MONGO_DB_NAME=your-db-here
 ```
 
-2. Scripts in package.json 
+# Commands
 
 * npm run start => Production build
 * npm run server => Run a Node server with nodemon
