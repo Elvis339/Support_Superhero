@@ -1,14 +1,9 @@
-let 
-    EventEmitter = require('events').EventEmitter, 
-    myEmitter = new EventEmitter();
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
+const { EventEmitter } = require('events');
 
-[
-    'App',
-    'SlackWebhook',
-    'CrispWebhook',
-    'HelpScoutWebhook'
-].map((value, cb) => {
-    return myEmitter.on(value, cb => cb)
-})
+const myEmitter = new EventEmitter();
 
-exports.myEmitter = myEmitter
+['App', 'SlackWebhook', 'CrispWebhook', 'HelpScoutWebhook'].map((value, cb) => myEmitter.on(value, (cb) => cb));
+
+exports.myEmitter = myEmitter;

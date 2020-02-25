@@ -2,20 +2,26 @@
   "name": "new-superhero",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "NODE_ENV=production node app.js",
     "server": "cross-env NODE_ENV=development nodemon app.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\" "
+    "build_frontend": "cd client && npm run build && cd ..",
+    "dev": "concurrently \"npm run server\" \"npm run client\" ",
+    "debug": "nodemon --inspect app.js",
+    "ngrok": "ngrok http 3000",
+    "lint:test": "eslint --ignore-path .eslintignore .",
+    "lint:fix": "eslint --fix ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@elastic/elasticsearch": "^7.5.0",
+    "activecollab_node_sdk": "^1.0.3",
     "axios": "^0.19.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^3.0.8",
     "body-parser": "^1.19.0",
     "chalk": "^2.4.2",
     "dotenv": "^8.2.0",
@@ -23,7 +29,9 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.2",
     "mongoose": "^5.7.5",
+    "morgan": "^1.9.1",
     "multer": "^1.4.2",
+    "rimraf": "^3.0.2",
     "socket.io": "^2.3.0",
     "validator": "^11.1.0",
     "yargs": "^14.2.0"
@@ -31,7 +39,11 @@
   "devDependencies": {
     "concurrently": "^5.0.2",
     "cross-env": "^6.0.3",
-    "morgan": "^1.9.1",
-    "nodemon": "^1.19.4"
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "ngrok": "^3.2.7",
+    "nodemon": "^1.19.4",
+    "prettier": "^1.19.1"
   }
 }

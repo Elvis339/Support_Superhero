@@ -1,22 +1,19 @@
-const
-  controller = require('../../controllers/app/Users/UserController'),
-  auth = require('../../middleware/auth');
+const controller = require('../../controllers/app/Users/UserController');
+const auth = require('../../middleware/auth');
 
 module.exports = (router) => {
   // Register
-  router.route('/users')
+  router
+    .route('/users')
     .post(controller.addUser)
-    .get(auth, controller.validate) // user
+    .get(auth, controller.validate); // user
 
   // Login
-  router.route('/login')
-    .post(controller.login)
+  router.route('/login').post(controller.login);
 
   // Log out
-  router.route('/logout')
-    .post(auth, controller.logOut)
+  router.route('/logout').post(auth, controller.logOut);
 
   // Edit my profile
-  router.route('/me')
-    .patch(auth, controller.editMe)
+  router.route('/me').patch(auth, controller.editMe);
 };

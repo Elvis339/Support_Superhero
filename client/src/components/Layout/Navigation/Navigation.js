@@ -3,23 +3,9 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import logout from '../../../helpers/logoff';
 import helpers from '../../../helpers/helpers';
-
-let modules = [
-    'shepherd',
-    'project',
-    'task',
-    'discussion',
-    'notes',
-    'expenses',
-    'activity',
-    'payments',
-    'all'
-]
+import { APP_MODULES } from '../../../helpers/APP_MODULES.d'
 
 const navigation = props => {
-
-
-
     return (
         <Navbar bg="light" expand="lg">
             <Link to='/'>
@@ -29,7 +15,7 @@ const navigation = props => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <NavDropdown title='Profile'>
-                        <Link className='dropdown-item' to='/me'>Edit me</Link>
+                        {/* <Link className='dropdown-item' to='/me'>Edit me</Link> */}
                         <Link className='dropdown-item' to='/login' onClick={logout}>Log out</Link>
                     </NavDropdown>
                     <NavDropdown title='Documents'>
@@ -38,8 +24,10 @@ const navigation = props => {
                     <Link className='nav-link' to='/tasks'>Tasks</Link>
                     <Link className='nav-link' to='/news'>News</Link>
                     <Link className='nav-link' to='/search'>Search</Link>
+                    <Link className='nav-link' to='/calculator'>Calculator</Link>
+                    {/* <Link className='nav-link' to='/statistics'>Statistics</Link> */}
                     {props.show ? <NavDropdown title="Select filter" id="basic-nav-dropdown">
-                        { modules.map((module, index) => <NavDropdown.Item key={index} name='filter' onClick={props.handleClick}>{helpers.capitalize(module)}</NavDropdown.Item>) }
+                        {APP_MODULES.map((module, index) => <NavDropdown.Item key={index} name='filter' onClick={props.handleClick}>{helpers.capitalize(module)}</NavDropdown.Item>)}
                     </NavDropdown> : null}
                 </Nav>
             </Navbar.Collapse>

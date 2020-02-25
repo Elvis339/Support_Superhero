@@ -1,15 +1,17 @@
-const 
-  controller = require('../../controllers/ActiveCollab/http/http'),
-  activecollabMiddleware = require('../../middleware/external/ActiveCollab/bootstrap_api'),
-  auth = require('../../middleware/auth');
+const modules = require('../../modules/ActiveCollab/bootstrap_activecollab');
+const controller = require('../../modules/ActiveCollab/AC_Controller');
+const auth = require('../../middleware/auth');
 
 module.exports = (router) => {
-  router.route('/activecollab')
-    .get(auth, activecollabMiddleware.bootstrapTasksApiCall, controller.container)
-    
-  router.route('/activecollab/task-lists')
-    .get(auth, activecollabMiddleware.bootstrapApiCall, controller.getTaskLists)
+  router
+    .route('/activecollab')
+    .get(auth, modules.activecollab_tasks, controller.container);
 
-  router.route('/activecollab/tasks')
-    .get(auth, activecollabMiddleware.bootstrapTasksApiCall, controller.getTasks)
+  router
+    .route('/activecollab/task-lists')
+    .get(auth, modules.activecollab_projects, controller.getTaskLists);
+
+  router
+    .route('/activecollab/tasks')
+    .get(auth, modules.activecollab_tasks, controller.getTasks);
 };
