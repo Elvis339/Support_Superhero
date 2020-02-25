@@ -5,5 +5,5 @@ module.exports = (router) => {
   router
     .route('/reactions')
     .get(auth, controller.getReactions)
-    .post(auth, controller.postReaction);
+    .post(controller.postReaction);
 };

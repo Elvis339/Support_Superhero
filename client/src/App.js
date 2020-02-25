@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Login from './containers/AuthenticationController/AuthenticationController';
 import ClientView from './components/View/Clients/ClientView';
 import AuthenticationComponent from './containers/AuthenticatedComponent/AuthenticatedComponent';
@@ -8,7 +8,8 @@ import ViewComponent from './components/View/View';
 import NewsContainer from './containers/NewsContainer/NewsContainer';
 import ActiveCollabController from './containers/ActiveCollabController/ActiveCollabContainer';
 import SearchContainer from './containers/SearchContainer/SearchContainer';
-import ReactionStatistics from './components/ReactionStatistics/ReactionStatistics';
+import CalculatorContainer from './containers/CalculatorContainer/CalculatorContainer';
+// import ReactionStatistics from './components/ReactionStatistics/ReactionStatistics';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Editor from './containers/EditorContainer/EditorContainer';
@@ -28,7 +29,8 @@ function App() {
           <Route path={'/news'} exact={true} component={NewsContainer} />
           <Route path={'/tasks'} exact={true} component={ActiveCollabController} />
           <Route path={'/search'} exact={true} component={SearchContainer} />
-          <Route path={'/statistics'} exact={true} component={ReactionStatistics} />
+          <Route path={'/calculator'} exact={true} component={CalculatorContainer} />
+          {/* <Route path={'/statistics'} exact={true} component={ReactionStatistics} /> */}
         </AuthenticationComponent>
       </Switch>
     </BrowserRouter>
