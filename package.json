@@ -10,6 +10,7 @@
     "build_frontend": "cd client && npm run build && cd ..",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
     "debug": "nodemon --inspect app.js",
+    "ngrok": "ngrok http 3000",
     "lint:test": "eslint --ignore-path .eslintignore .",
     "lint:fix": "eslint --fix ."
   },

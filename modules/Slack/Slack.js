@@ -1,3 +1,7 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
+/* eslint-disable consistent-return */
+/* eslint-disable camelcase */
 const News = require('../../models/NewsModel');
 const Utils = require('../../utils');
 

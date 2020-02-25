@@ -15,7 +15,7 @@ const navigation = props => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <NavDropdown title='Profile'>
-                        <Link className='dropdown-item' to='/me'>Edit me</Link>
+                        {/* <Link className='dropdown-item' to='/me'>Edit me</Link> */}
                         <Link className='dropdown-item' to='/login' onClick={logout}>Log out</Link>
                     </NavDropdown>
                     <NavDropdown title='Documents'>
