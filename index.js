@@ -1,6 +1,5 @@
 const httpServer = require('http').createServer();
 const server = require('./app');
-// const socket = require('./services/socket/socket');
 
 const ENV = process.env.NODE_ENV || 'development';
 const CONFIG = require('./config');

@@ -12,7 +12,6 @@ This command will install all dependencies required for node & build react front
 
 ```
 sh start.sh  
-npm run start
 ```
 
 Don't forget to create your own .env file, here's an example:

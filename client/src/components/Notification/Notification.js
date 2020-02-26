@@ -18,10 +18,8 @@ class NotificationController extends Component {
 
     componentDidMount() {
         let socket = io(this.state.socket_uri)
-        console.log(socket)
 
         socket.on('notification', data => {
-            console.log(data)
             this.setState({
                 notifications: data
             })
@@ -30,9 +28,8 @@ class NotificationController extends Component {
 
     componentDidUpdate() {
         let socket = io(this.state.socket_uri)
-        console.log(socket)
+
         socket.on('notification', data => {
-            console.log(data)
             this.setState({
                 notifications: data
             })

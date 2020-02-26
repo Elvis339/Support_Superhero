@@ -7,7 +7,7 @@ module.exports = {
     socketUrl: 'localhost',
   },
   production: {
-    port: process.env.PORT || 3001,
+    port: process.env.PORT || 3000,
     env: 'production',
     saltingRounds: 10,
     socketPort: 3002,

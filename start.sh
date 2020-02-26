@@ -19,5 +19,26 @@ fi
 
 echo "----- FRONTEND BUILT & MODULES INSTALLED -----"
 
-export NODE_ENV=production
-pm2 start index.js
+echo "Set NODE_ENV production or development"
+read -p 'SET ENV: ' environment
+
+if [ $environment == "production" ]
+then
+  export PORT=3000
+  echo "PORT is set to 3000 🚢"
+
+  export NODE_ENV=production
+  echo "NODE_ENV is set to production 🎬"
+
+  node_modules/pm2/bin/pm2 start index.js
+  echo "pm2 started index.js"
+else
+  export PORT=3001
+  echo "PORT is set to 3001 🚢"
+
+  export NODE_ENV=development
+  echo "NODE_ENV is set to development 🚦"
+
+  npm run dev
+  echo "Started in development mode..."
+fi
