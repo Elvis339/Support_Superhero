@@ -4,6 +4,8 @@ const path = require('path');
 const multer = require('multer');
 const crypto = require('crypto');
 
+const ENV = process.env.NODE_ENV || 'development';
+
 module.exports = {
   GET_ROOT_PATH: (dirname) => {
     if (typeof dirname !== 'string') {
@@ -52,4 +54,6 @@ module.exports = {
     });
     return multer({ storage, limits: { fileSize: 2147483648 } }); // 2GB
   },
+
+  isDevelopmentMode: () => (ENV === 'development'),
 };

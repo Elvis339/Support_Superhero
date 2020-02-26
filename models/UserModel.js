@@ -1,6 +1,3 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable func-names */
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
@@ -79,6 +76,7 @@ userSchema.methods.generateAuthToken = async function () {
 
 // Method to login user
 userSchema.statics.findByCredentials = async (email, password) => {
+  // eslint-disable-next-line no-use-before-define
   const user = await User.findOne({ email });
 
   if (!user) {

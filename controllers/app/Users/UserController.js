@@ -1,5 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable no-return-assign */
 const User = require('../../../models/UserModel');
 
 module.exports = {
@@ -77,7 +75,9 @@ module.exports = {
     }
 
     try {
-      updates.forEach((update) => (req.user[update] = req.body[update]));
+      updates.map((update) => {
+        req.user[update] = req.body[update];
+      });
       await req.user.save();
       res.send(req.user);
     } catch (error) {

@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-underscore-dangle */
 require('dotenv').config();
 const { Client } = require('activecollab_node_sdk');
 
@@ -23,7 +21,7 @@ const constructClient = async () => {
 // eslint-disable-next-line no-return-await
 const __client__ = (async () => await constructClient())();
 
-const activecollab_projects = async (req, res, next) => {
+const activeCollabProjects = async (req, res, next) => {
   try {
     req.ActiveCollabProjects = await (await __client__)._get(
       `projects/${process.env.ACTIVECOLLAB_PROJECT_ID}`,
@@ -38,7 +36,7 @@ const activecollab_projects = async (req, res, next) => {
   }
 };
 
-const activecollab_tasks = async (req, res, next) => {
+const activeCollabTasks = async (req, res, next) => {
   try {
     req.ActiveCollabTasks = await (await __client__)._get(
       `projects/${process.env.ACTIVECOLLAB_PROJECT_ID}/tasks`,
@@ -54,6 +52,6 @@ const activecollab_tasks = async (req, res, next) => {
 };
 
 module.exports = {
-  activecollab_projects,
-  activecollab_tasks,
+  activeCollabProjects,
+  activeCollabTasks,
 };
