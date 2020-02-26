@@ -17,6 +17,7 @@
         "no-console": "warn",
         "no-underscore-dangle": "off",
         "array-callback-return": "off",
-        "func-names": "warn"
+        "func-names": "warn",
+        "consistent-return": "off"
     }
 }
