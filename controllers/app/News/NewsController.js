@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 const News = require('../../../models/NewsModel');
 const Utils = require('../../../utils');
 

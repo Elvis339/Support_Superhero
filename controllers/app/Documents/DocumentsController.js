@@ -1,8 +1,5 @@
-/* eslint-disable consistent-return */
-/* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
-/* eslint-disable no-underscore-dangle */
 const Documents = require('../../../models/DocumentsModel');
 const {
   addDocumentToElastic,

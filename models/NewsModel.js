@@ -1,4 +1,3 @@
-/* eslint-disable func-names */
 const mongoose = require('mongoose');
 const emitter = require('../controllers/events/Event');
 

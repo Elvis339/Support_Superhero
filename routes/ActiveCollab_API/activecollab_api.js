@@ -5,13 +5,13 @@ const auth = require('../../middleware/auth');
 module.exports = (router) => {
   router
     .route('/activecollab')
-    .get(auth, modules.activecollab_tasks, controller.container);
+    .get(auth, modules.activeCollabTasks, controller.container);
 
   router
     .route('/activecollab/task-lists')
-    .get(auth, modules.activecollab_projects, controller.getTaskLists);
+    .get(auth, modules.activeCollabProjects, controller.getTaskLists);
 
   router
     .route('/activecollab/tasks')
-    .get(auth, modules.activecollab_tasks, controller.getTasks);
+    .get(auth, modules.activeCollabTasks, controller.getTasks);
 };

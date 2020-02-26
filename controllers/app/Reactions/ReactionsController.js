@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 const Document = require('../../../models/DocumentsModel');
 
 module.exports = {
