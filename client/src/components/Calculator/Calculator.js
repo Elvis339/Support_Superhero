@@ -40,12 +40,12 @@ const calculator = props => {
 
                             <Button onClick={props.calculate}>Calculate</Button>
                         </Form>
-                        { props.result === null ? null : <Fragment>
+                        {props.result === null ? null : <Fragment>
                             <Alert className='my-3' variant='success'>
                                 <strong className='text-center'>{props.result}$</strong> <br></br>
                                 {props.description}
                             </Alert>
-                        </Fragment> }
+                        </Fragment>}
                     </div>
                 </Centered>
             </Frame>

@@ -1,11 +1,8 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
 /* eslint-disable consistent-return */
 /* eslint-disable camelcase */
 const News = require('../../models/NewsModel');
 const Utils = require('../../utils');
 
-const error = '';
 let message = '';
 let status = 0;
 
@@ -31,6 +28,25 @@ module.exports = {
       });
       await news.save();
       res.status(200).send(text);
+    } catch (error) {
+      res.status(500).send({
+        error: error.stack,
+        message: error.toString(),
+        status: 500,
+      });
+    }
+  },
+
+  webhookTest: async (req, res) => {
+    try {
+      const news = new News({
+        created_by: 'webhookBot@test.com',
+        created_on: Utils.date_now(),
+        type: 'SlackWebhook',
+        body: `${Math.random()}`,
+      });
+      await news.save();
+      res.status(200).send(news);
     } catch (error) {
       res.status(500).send({
         error: error.stack,

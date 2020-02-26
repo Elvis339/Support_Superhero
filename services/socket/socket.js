@@ -1,20 +1,19 @@
-const ioSocket = require('socket.io');
+exports.emitToSocketId = (eventName, data) => {
+  console.log(`Emit ${eventName}`, data);
+  global.io.emit(eventName, data);
+};
+/**
+ * TODO --> Emit over specific channel
+ */
 
-const init = (server, socketPath) => ioSocket(server, {
-  path: socketPath,
-  origins: '*:*',
-  forceNew: true,
-  timeout: 10000,
-  transports: ['websocket'],
-});
-
-const socketListener = (io) => {
-  io.on('connection', (socket) => {
-    socket.on('notifications', (props) => console.log(props));
-  });
+exports.emitOverChannel = (eventName, data) => {
+  console.log(`Emit over channel ${eventName}`, data);
+  global.io.emit(eventName, data);
 };
 
-module.exports = {
-  init,
-  socketListener,
+exports.init = async () => {
+  global.io.on('connection', async (socket) => {
+    global.io.to(socket.id).emit('notification', false);
+    global.io.sockets.sockets[socket.id].disconnect();
+  });
 };

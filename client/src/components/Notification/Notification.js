@@ -13,13 +13,15 @@ class NotificationController extends Component {
 
     state = {
         notifications: null,
-        socket_uri: 'http://localhost:3001'
+        socket_uri: 'http://localhost:3002'
     }
 
     componentDidMount() {
         let socket = io(this.state.socket_uri)
+        console.log(socket)
 
-        socket.on('notifications', data => {
+        socket.on('notification', data => {
+            console.log(data)
             this.setState({
                 notifications: data
             })
@@ -28,8 +30,9 @@ class NotificationController extends Component {
 
     componentDidUpdate() {
         let socket = io(this.state.socket_uri)
-
-        socket.on('notifications', data => {
+        console.log(socket)
+        socket.on('notification', data => {
+            console.log(data)
             this.setState({
                 notifications: data
             })
