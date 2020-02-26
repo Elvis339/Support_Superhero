@@ -3,6 +3,11 @@
 BUILD="$PWD/client/build/"
 MODULES="$PWD/node_modules"
 
+if [ ! -d "$MODULES" ]; then
+    echo "Installing modules in ${MODULES} ⚙️⚙️⚙️"
+    npm install && cd $PWD/client && npm install && cd ..
+fi
+
 echo "Set NODE_ENV production or development"
 read -p 'SET ENV: ' environment
 
@@ -15,7 +20,7 @@ if [ "$environment" == "production" ]; then
       echo "Updating frontend... 🚧"
       npm run build_frontend
     fi
-  echo "----- FRONTEND BUILT & MODULES INSTALLED -----"
+  echo "----- FRONTEND BUILT ⚒ -----"
 
   export PORT=3000
   echo "PORT is set to 3000 🚢"
