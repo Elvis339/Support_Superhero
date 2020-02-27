@@ -5,6 +5,7 @@ module.exports = {
     saltingRounds: 10,
     socketPort: 3002,
     socketUrl: 'localhost',
+    file_path_name: 'Support_Superhero',
   },
   production: {
     port: process.env.PORT || 3000,
@@ -12,5 +13,6 @@ module.exports = {
     saltingRounds: 10,
     socketPort: 3002,
     socketUrl: 'localhost',
+    file_path_name: 'Support_Superhero',
   },
 };

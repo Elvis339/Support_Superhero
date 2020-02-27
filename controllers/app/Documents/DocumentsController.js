@@ -1,6 +1,9 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
 const Documents = require('../../../models/DocumentsModel');
+
+const ENV = process.env.NODE_ENV || 'development';
+const config = require('../../../config')[ENV];
 const {
   addDocumentToElastic,
   searchDocumentElastic,
@@ -95,7 +98,7 @@ module.exports = {
           {
             original_name: originalname,
             mimetype,
-            path: path.split('/new-superhero')[1],
+            path: path.split(config.file_path_name)[1],
             size,
           },
         ],
