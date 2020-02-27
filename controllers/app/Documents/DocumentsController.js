@@ -11,20 +11,38 @@ const {
 const { APP_MODULES } = require('./APP_MODULES.d');
 
 module.exports = {
+  countDocuments: async (req, res) => {
+    try {
+      const count = await Documents.countDocuments({  });
+      res.status(200).send({
+        status: 'OK!',
+        documents: count
+      });
+    } catch (error) {
+      res.status(500).send({
+        err: error.toString(),
+        message: 'Pinging documents failed',
+        status: 500,
+      })
+    }
+  },
+
   getDocuments: async (req, res) => {
     let documents = null;
     try {
       const query = req.query.filter;
+      const limiter = parseInt(req.query.limit, 10);
+
       for (const _module of APP_MODULES) {
         if (query === _module) {
           if (_module === 'all') {
             documents = await Documents.find({})
-              .limit(10)
+              .limit(limiter)
               .sort({ createdAt: -1 });
             return res.status(200).send(documents);
           }
           documents = await Documents.find({ category: _module })
-            .limit(10)
+            .limit(limiter)
             .sort({ createdAt: -1 });
           return res.status(200).send(documents);
         }
@@ -139,13 +157,13 @@ module.exports = {
   searchDocuments: async (req, res) => {
     try {
       const { query } = req;
-      const result = await searchDocumentElastic(query.q);
-      res.status(200).send(result);
+      const result = await searchDocumentElastic(query.q)
+      return res.status(200).send(result);
     } catch (error) {
-      res.status(404).send({
+      res.status(500).send({
         err: error.toString(),
-        message: 'Not found',
-        status: 404,
+        message: 'Search unexpected error',
+        status: 500,
       });
     }
   },
