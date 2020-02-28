@@ -4,6 +4,7 @@ require('./db/database');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const logger = require('morgan');
 const { elastic } = require('./services/elasticsearch/Elasticsearch');
 const routes = require('./routes/index.js');
@@ -21,6 +22,7 @@ app.use(
     extended: true,
   }),
 );
+app.use(cors())
 app.use('/uploads', express.static('uploads'));
 
 if (environment === 'production') {
