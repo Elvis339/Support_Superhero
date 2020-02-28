@@ -22,7 +22,6 @@ then
     npm run build_frontend
   fi
   echo "----- FRONTEND BUILT ⚒ -----"
-  export NODE_ENV=production
-  export PORT=3000
-  echo "NODE_ENV production | PORT 3000"
 fi
+
+echo "DONT FORGET TO EXPORT NODE_ENV AND PORT!"
