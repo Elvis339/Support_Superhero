@@ -8,35 +8,21 @@ if [ ! -d "$MODULES" ]; then
     npm install && cd $PWD/client && npm install && cd ..
 fi
 
-echo "Set NODE_ENV production or development"
-read -p 'SET ENV: ' environment
+echo "Do you want to set application to production? y/n"
+read -p 'y/n: ' environment
 
-if [ "$environment" == "production" ]; then
-    if [ ! -d "$BUILD" ]; then
-      echo "Building frontend in ${BUILD}... 👷‍♂️"
-      npm run build_frontend
-    else
-      rm -rf $BUILD
-      echo "Updating frontend... 🚧"
-      npm run build_frontend
-    fi
+if [ "$environment" = "y" ] 
+then
+  if [ ! -d "$BUILD" ]; then
+    echo "Building frontend in ${BUILD}... 👷‍♂️"
+    npm run build_frontend
+  else
+    rm -rf $BUILD
+    echo "Updating frontend... 🚧"
+    npm run build_frontend
+  fi
   echo "----- FRONTEND BUILT ⚒ -----"
-
-  export PORT=3000
-  echo "PORT is set to 3000 🚢"
-
   export NODE_ENV=production
-  echo "NODE_ENV is set to production 🎬"
-
-  node_modules/pm2/bin/pm2 start index.js
-  echo "pm2 started index.js"
-else
-  export PORT=3001
-  echo "PORT is set to 3001 🚢"
-
-  export NODE_ENV=development
-  echo "NODE_ENV is set to development 🚦"
-
-  npm run dev
-  echo "Started in development mode..."
+  export PORT=3000
+  echo "NODE_ENV production | PORT 3000"
 fi

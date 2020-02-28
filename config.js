@@ -15,4 +15,8 @@ module.exports = {
     socketUrl: 'localhost',
     file_path_name: 'Support_Superhero',
   },
+  socket: {
+    socketServerPort: 3002,
+    socketServerUrl: '127.0.0.1'
+  }
 };

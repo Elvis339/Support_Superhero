@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Notification.css';
 import { Button } from 'react-bootstrap';
+import CONFIG from '../../config';
 
 class NotificationController extends Component {
     constructor(props) {
@@ -13,11 +14,10 @@ class NotificationController extends Component {
 
     state = {
         notifications: null,
-        socket_uri: 'http://localhost:3002'
     }
 
     componentDidMount() {
-        let socket = io(this.state.socket_uri)
+        let socket = io(CONFIG.sockerURL)
 
         socket.on('notification', data => {
             this.setState({
@@ -27,7 +27,7 @@ class NotificationController extends Component {
     }
 
     componentDidUpdate() {
-        let socket = io(this.state.socket_uri)
+        let socket = io(CONFIG.sockerURL)
 
         socket.on('notification', data => {
             this.setState({
