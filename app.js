@@ -12,7 +12,9 @@ const routes = require('./routes/index.js');
 const app = express();
 const router = express.Router();
 
-const environment = process.env.NODE_ENV; // development
+const CONFIG = require('./config');
+
+const ENV = process.env.NODE_ENV;
 const port = process.env.PORT || 3001;
 
 // Middlewares
@@ -22,10 +24,10 @@ app.use(
     extended: true,
   }),
 );
-app.use(cors())
+app.use(cors());
 app.use('/uploads', express.static('uploads'));
 
-if (environment === 'production') {
+if (ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client', 'build')));
   app.use('/api/v1', routes(router));
   app.get('/*', (req, res) => {
@@ -39,7 +41,7 @@ if (environment === 'production') {
 elastic
   .ping()
   .then(() => app.listen(port, () => {
-    console.log(`Server now listening at http://localhost:${port}`);
+    console.log(`Server now listening at ${CONFIG[ENV].url}:${port}`);
   }))
   .catch(() => {
     console.log('Elasticsearch server not responding...');
