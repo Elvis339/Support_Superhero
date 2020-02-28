@@ -1,17 +1,28 @@
 const httpServer = require('http').createServer();
-const server = require('./app');
+const app = require('./app');
+
+const { elastic } = require('./services/elasticsearch/Elasticsearch');
 
 const ENV = process.env.NODE_ENV || 'development';
+const CONFIG = require('./config');
 const { socket } = require('./config');
 
 global.io = require('socket.io').listen(httpServer);
 
-global.io.origins('*:*');
+elastic
+  .ping()
+  .then(() => app.listen(CONFIG[ENV].port, () => {
+    console.log(`Server now listening at ${CONFIG[ENV].url}:${CONFIG[ENV].port}`);
+  }))
+  .catch(() => {
+    console.log('Elasticsearch server not responding...');
+    process.exit(1);
+  });
 
 httpServer.listen(socket.socketServerPort, socket.socketServerUrl, () => {
-  console.info(`Socket server started on ${socket.socketServerUrl}:${socket.socketServerPort} | (${ENV})`);
+  console.info(`Socket server started on ${socket.socketServerUrl}:${socket.socketServerPort} (${ENV})`);
 });
 
-const src = server;
+const src = app;
 
 module.exports = src;
