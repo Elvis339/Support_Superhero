@@ -1,14 +1,15 @@
 const httpServer = require('http').createServer();
 const server = require('./app');
-// const socket = require('./services/socket/socket');
 
 const ENV = process.env.NODE_ENV || 'development';
-const CONFIG = require('./config');
+const { socket } = require('./config');
 
 global.io = require('socket.io').listen(httpServer);
 
-httpServer.listen(CONFIG[ENV].socketPort, CONFIG[ENV].socketUrl, () => {
-  console.info(`Socket server started on ${CONFIG[ENV].socketUrl}:${CONFIG[ENV].socketPort} (${ENV})`);
+global.io.origins('*:*');
+
+httpServer.listen(socket.socketServerPort, socket.socketServerUrl, () => {
+  console.info(`Socket server started on ${socket.socketServerUrl}:${socket.socketServerPort} | (${ENV})`);
 });
 
 const src = server;

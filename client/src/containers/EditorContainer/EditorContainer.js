@@ -54,7 +54,6 @@ class Editor extends Component {
     return this.setState({
       text: '',
       title: '',
-      category: '',
       hasFiles: 0,
       sharable_files: {},
       error: null,

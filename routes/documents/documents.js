@@ -12,6 +12,8 @@ module.exports = (router) => {
       controller.addDocument,
     );
 
+  router.route('/documents/ping').get(auth, controller.countDocuments);
+  
   router.route('/document').get(auth, controller.getDocument);
 
   router.route('/document-file').get(controller.getFile);

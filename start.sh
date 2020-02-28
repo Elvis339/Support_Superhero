@@ -8,16 +8,20 @@ if [ ! -d "$MODULES" ]; then
     npm install && cd $PWD/client && npm install && cd ..
 fi
 
-if [ ! -d "$BUILD" ]; then
+echo "Do you want to set application to production? y/n"
+read -p 'y/n: ' environment
+
+if [ "$environment" = "y" ] 
+then
+  if [ ! -d "$BUILD" ]; then
     echo "Building frontend in ${BUILD}... 👷‍♂️"
     npm run build_frontend
-else
+  else
     rm -rf $BUILD
     echo "Updating frontend... 🚧"
     npm run build_frontend
+  fi
+  echo "----- FRONTEND BUILT ⚒ -----"
 fi
 
-echo "----- FRONTEND BUILT & MODULES INSTALLED -----"
-
-export NODE_ENV=production
-pm2 start index.js
+echo "DONT FORGET TO EXPORT NODE_ENV AND PORT!"
