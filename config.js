@@ -15,6 +15,6 @@ module.exports = {
   },
   socket: {
     socketServerPort: 3002,
-    socketServerUrl: '127.0.0.1',
+    socketServerUrl: 'fidelis.style',
   },
 };
