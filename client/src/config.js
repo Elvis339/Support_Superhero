@@ -1,3 +1,3 @@
 export default {
-    socketURL: 'fidelis.style',
+    socketURL: 'superhero.activecollab.com',
 };

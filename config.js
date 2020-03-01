@@ -11,10 +11,7 @@ module.exports = {
     url: 'https://superhero.activecollab.com',
     env: 'production',
     saltingRounds: 10,
+    sslPath: '',
     file_path_name: 'Support_Superhero',
-  },
-  socket: {
-    socketServerPort: 3002,
-    socketServerUrl: 'fidelis.style',
   },
 };
