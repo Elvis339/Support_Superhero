@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
 const Documents = require('../../../models/DocumentsModel');
@@ -13,17 +14,17 @@ const { APP_MODULES } = require('./APP_MODULES.d');
 module.exports = {
   countDocuments: async (req, res) => {
     try {
-      const count = await Documents.countDocuments({  });
+      const count = await Documents.countDocuments({ });
       res.status(200).send({
         status: 'OK!',
-        documents: count
+        documents: count,
       });
     } catch (error) {
       res.status(500).send({
         err: error.toString(),
         message: 'Pinging documents failed',
         status: 500,
-      })
+      });
     }
   },
 
@@ -157,7 +158,7 @@ module.exports = {
   searchDocuments: async (req, res) => {
     try {
       const { query } = req;
-      const result = await searchDocumentElastic(query.q)
+      const result = await searchDocumentElastic(query.q);
       return res.status(200).send(result);
     } catch (error) {
       res.status(500).send({

@@ -23,7 +23,7 @@ class DashboardController extends Component {
     });
   }
 
-  handlePagination(e) {
+  handlePagination() {
     return this.setState({ limiter: this.state.limiter + 5 })
   }
 
@@ -45,7 +45,7 @@ class DashboardController extends Component {
             }}
           />
         </Frame>
-        <Pagination handlePagination={e => this.handlePagination(e)} />
+        <Pagination handlePagination={() => this.handlePagination()} />
       </Fragment>
     );
   }
