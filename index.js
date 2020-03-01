@@ -12,8 +12,6 @@ const ENV = process.env.NODE_ENV || 'development';
 const CONFIG = require('./config');
 const { socket } = require('./config');
 
-global.io = require('socket.io').listen(httpServer);
-
 elastic
   .ping()
   .then(() => app.listen(CONFIG[ENV].port, () => {
@@ -27,6 +25,8 @@ elastic
 httpServer.listen(socket.socketServerPort, socket.socketServerUrl, () => {
   console.info(`Socket server started on ${socket.socketServerUrl}:${socket.socketServerPort} (${ENV})`);
 });
+
+global.io = require('socket.io').listen(httpServer);
 
 const src = app;
 
