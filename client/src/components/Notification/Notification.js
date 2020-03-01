@@ -17,7 +17,11 @@ class NotificationController extends Component {
     }
 
     componentDidMount() {
-        let socket = io(CONFIG.sockerURL)
+        let socket = io(CONFIG.sockerURL, {
+            secure: true,
+            reconnection: true,
+            rejectUnauthorized: false
+        })
 
         socket.on('notification', data => {
             this.setState({
@@ -27,7 +31,11 @@ class NotificationController extends Component {
     }
 
     componentDidUpdate() {
-        let socket = io(CONFIG.sockerURL)
+        let socket = io(CONFIG.sockerURL, {
+            secure: true,
+            reconnection: true,
+            rejectUnauthorized: false
+        })
 
         socket.on('notification', data => {
             this.setState({

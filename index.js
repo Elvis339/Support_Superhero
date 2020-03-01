@@ -1,4 +1,9 @@
-const httpServer = require('http').createServer();
+const pingPong = (req, res) => {
+  res.writeHead(200);
+  res.end('Hello, World!');
+};
+
+const httpServer = require('http').createServer(pingPong);
 const app = require('./app');
 
 const { elastic } = require('./services/elasticsearch/Elasticsearch');
