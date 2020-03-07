@@ -10,7 +10,7 @@ const databaseOptions = {
 
 mongoose.connect(connUri, databaseOptions, (err) => {
   if (!err) {
-    return console.log('Connection to the database established');
+    return process.stdout.write('Connection to the database established');
   }
   throw new Error(`Error connection to the database! ${err.toString()}`);
 });
