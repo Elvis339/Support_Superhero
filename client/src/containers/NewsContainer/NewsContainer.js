@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Resource from '../Resource/Resource';
+import Notification from '../../components/Notification/Notification';
 import NewsMessage from '../../components/News/Layout/NewsInfo/NewsInfo';
 import ActivityHeader from '../../components/News/Layout/Header/ActivityHeader';
 
@@ -7,7 +8,6 @@ import { Container } from 'react-bootstrap';
 class NewsController extends Component {
     constructor(props) {
         super(props)
-
         this.dateHandler.bind(this)
     }
 
@@ -37,6 +37,7 @@ class NewsController extends Component {
                 <ActivityHeader
                     changeDate={e => this.dateHandler(e)}
                 />
+                <Notification />
                 <Container className='my-5'>
                     <Resource
                         path={this.state.path}

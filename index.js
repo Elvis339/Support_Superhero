@@ -13,8 +13,8 @@ if (ENV === 'production') {
   const SSL = production.sslPath;
 
   const httpsOpts = {
-    cert: fs.readFileSync(path.join(SSL, 'cert.pem')),
-    key: fs.readFileSync(path.join(SSL, 'privkey.pem')),
+    cert: fs.readFileSync(path.join(SSL, 'server.cert')),
+    key: fs.readFileSync(path.join(SSL, 'server.key')),
   };
 
   const httpsServer = https.createServer(httpsOpts, app);

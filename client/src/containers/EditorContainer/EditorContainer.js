@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactQuill from 'react-quill';
 import Alert from '../../components/Layout/Alerts/Alerts';
 import AddDocument from '../../components/Document/AddDocument';
+import { ProgressBar } from 'react-bootstrap';
 
 import { getJwt } from '../../helpers/jwt';
 
@@ -22,7 +23,8 @@ class Editor extends Component {
       hasFiles: 0,
       sharable_files: {},
       error: null,
-      status: null
+      status: null,
+      percent: 0,
     }
   }
 
@@ -57,7 +59,8 @@ class Editor extends Component {
       hasFiles: 0,
       sharable_files: {},
       error: null,
-      status: "Document added! 🚀"
+      status: "Document added! 🚀",
+      percent: 0,
     })
   }
 
@@ -75,8 +78,17 @@ class Editor extends Component {
       let res = await axios.post('/api/v1/documents', formData, {
         headers: {
           "Authorization": `Bearer: ${getJwt()}`,
-        }
-      })
+        },
+        onUploadProgress: progressEvent => {
+          const { lengthComputable, loaded, total } = progressEvent;
+          if (lengthComputable) {
+            return this.setState({
+              percent: (100 * loaded / total),
+            });
+          };
+          return
+        },
+      });
 
       if (res.status === 201) return this.resetState()
     } catch (error) {
@@ -112,6 +124,7 @@ class Editor extends Component {
         change={e => this.handleChangeInForm(e)}
         onFileChange={e => this.onFileChange(e)}
       >
+      <ProgressBar className='mb-2' now={this.state.percent} label={`${this.state.percent}%`} />
         <ReactQuill
           placeholder="Make support life easier. 🥰"
           modules={this.modules}
