@@ -1,6 +1,6 @@
 module.exports = {
   development: {
-    port: 3001, // React listening on 3000
+    port: process.env.PORT || 3001, // React listening on 3000
     url: 'http://127.0.0.1',
     env: 'development',
     saltingRounds: 10,
@@ -15,3 +15,5 @@ module.exports = {
     file_path_name: 'Support_Superhero',
   },
 };
+
+// /Users/elvissabanovic/Desktop/Support_Superhero/dev/nginx/certs
