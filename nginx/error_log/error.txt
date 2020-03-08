@@ -1,1 +1,0 @@
-/ FOR NGINX ERROR LOGS /
