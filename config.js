@@ -11,9 +11,7 @@ module.exports = {
     url: 'https://superhero.activecollab.com',
     env: 'production',
     saltingRounds: 10,
-    sslPath: '',
+    sslPath: '/Users/elvissabanovic/Desktop/Support_Superhero/dev/nginx/certs',
     file_path_name: 'Support_Superhero',
   },
 };
-
-// /Users/elvissabanovic/Desktop/Support_Superhero/dev/nginx/certs
