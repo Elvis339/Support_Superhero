@@ -124,7 +124,7 @@ class Editor extends Component {
         change={e => this.handleChangeInForm(e)}
         onFileChange={e => this.onFileChange(e)}
       >
-      <ProgressBar className='pb-3' now={this.state.percent} label={`${this.state.percent}%`} />
+      <ProgressBar className='mb-2' now={this.state.percent} label={`${this.state.percent}%`} />
         <ReactQuill
           placeholder="Make support life easier. 🥰"
           modules={this.modules}

@@ -1,4 +1,4 @@
 export default {
-    socketURL: 'superhero.activecollab.com',
-    // socketURL: 'localhost:3000'
+    // socketURL: 'superhero.activecollab.com:3000',
+    socketURL: 'localhost:3001'
 };
