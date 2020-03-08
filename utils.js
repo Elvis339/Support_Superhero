@@ -4,7 +4,7 @@ const path = require('path');
 const multer = require('multer');
 const crypto = require('crypto');
 
-const ENV = process.env.NODE_ENV || 'development';
+const ENV = process.env.NODE_ENV;
 
 module.exports = {
   GET_ROOT_PATH: (dirname) => {

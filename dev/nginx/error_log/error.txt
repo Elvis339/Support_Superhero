@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 / FOR NGINX ERROR LOGS /
+=======
+// Here for git
+>>>>>>> features
