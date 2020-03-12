@@ -13,7 +13,7 @@ const card = props => {
                 <Card.Body>
                     {props.body}
                 </Card.Body>
-                { props.uri ? <Link className='text-center btn btn-info' to={props.uri}>Go</Link> : null }
+                { props.uri ? <Link className='text-center btn btn-info' to={props.uri}>View</Link> : null }
             </Card>
         </Fragment>
     )

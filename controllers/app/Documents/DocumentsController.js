@@ -155,6 +155,20 @@ module.exports = {
     }
   },
 
+  deleteDocument: async (req, res) => {
+    try {
+      const { query } = req;
+      const document = await Documents.deleteOne({ _id: query.id });
+      res.status(200).send(document);
+    } catch (error) {
+      res.status(500).send({
+        err: error.toString(),
+        message: 'Delete document error',
+        status: 500,
+      });
+    }
+  },
+
   searchDocuments: async (req, res) => {
     try {
       const { query } = req;

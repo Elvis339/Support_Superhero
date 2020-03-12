@@ -12,11 +12,13 @@ module.exports = (router) => {
       controller.addDocument,
     );
 
-  router.route('/documents/ping').get(auth, controller.countDocuments);
+  router.route('/document')
+    .get(auth, controller.getDocument)
+    .delete(auth, controller.deleteDocument);
 
-  router.route('/document').get(auth, controller.getDocument);
+  router.route('/documents/search').get(auth, controller.searchDocuments); 
 
   router.route('/document-file').get(controller.getFile);
 
-  router.route('/documents/search').get(auth, controller.searchDocuments);
+  router.route('/documents/ping').get(auth, controller.countDocuments);
 };

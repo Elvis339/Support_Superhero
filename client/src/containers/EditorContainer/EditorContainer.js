@@ -143,31 +143,3 @@ class Editor extends Component {
 }
 
 export default Editor;
-
-  // saveToDB = async e => {
-  //   e.preventDefault();
-  //   try {
-  //     let res = await axios.post('/api/v1/documents',
-  //       {
-  //         title: this.state.title === '' ? Error('Empty!') : this.state.title,
-  //         category: this.state.category,
-  //         body: this.state.text === '' ? Error('Empty!') : this.state.text,
-  //         hasFiles: this.state.hasFiles,
-  //         sharable_files: this.state.sharable_files,
-  //         created_by: window.localStorage.getItem('created_by'),
-  //       },
-  //       {
-  //         headers: {
-  //           "Authorization": `Bearer: ${getJwt()}`,
-  //         }
-  //       }
-  //     )
-
-  //     if (res.status === 201) return this.resetState()
-  //     console.log(this.state)
-  //   } catch (error) {
-  //     this.setState({
-  //       error
-  //     })
-  //   }
-  // }
