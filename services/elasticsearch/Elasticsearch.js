@@ -19,6 +19,23 @@ module.exports = {
     }
   },
 
+  deleteElasticSearchDocument: async (docId) => {
+    try {
+      return await client.delete_by_query({
+        index: 'documents',
+        body: {
+          query: {
+            match: {
+              docId,
+            },
+          },
+        },
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
   searchDocumentElastic: async (query) => {
     try {
       const result = await client.search({

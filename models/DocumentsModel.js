@@ -1,4 +1,10 @@
+/* eslint-disable func-names */
+const fs = require('fs');
+
+const path = require('path');
 const mongoose = require('mongoose');
+const { deleteElasticSearchDocument } = require('../services/elasticsearch/Elasticsearch');
+const { GET_ROOT_PATH } = require('../utils');
 
 const filesSchema = new mongoose.Schema({
   type: {
@@ -84,6 +90,21 @@ const documentsSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+documentsSchema.statics.deleteDocument = async function (_id, next) {
+  try {
+    const document = await Documents.findOne({ _id });
+    const filePathArray = document.files;
+    if (filePathArray.length > 0) {
+      const filePaths = filePathArray.map((file) => file.path);
+      filePaths.map((filePath) => fs.unlinkSync(path.join(GET_ROOT_PATH('models'), filePath)));
+    }
+    await Documents.deleteOne({ _id });
+    await deleteElasticSearchDocument(_id);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
 const Documents = mongoose.model('Documents', documentsSchema);
 

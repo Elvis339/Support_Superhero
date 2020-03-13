@@ -1,10 +1,14 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
+const fs = require('fs');
+const path = require('path');
+
 const Documents = require('../../../models/DocumentsModel');
 
 const ENV = process.env.NODE_ENV || 'development';
 const config = require('../../../config')[ENV];
+const { GET_ROOT_PATH } = require('../../../utils');
 const {
   addDocumentToElastic,
   searchDocumentElastic,
@@ -14,7 +18,7 @@ const { APP_MODULES } = require('./APP_MODULES.d');
 module.exports = {
   countDocuments: async (req, res) => {
     try {
-      const count = await Documents.countDocuments({ });
+      const count = await Documents.countDocuments({});
       res.status(200).send({
         status: 'OK!',
         documents: count,
@@ -158,7 +162,7 @@ module.exports = {
   deleteDocument: async (req, res) => {
     try {
       const { query } = req;
-      const document = await Documents.deleteOne({ _id: query.id });
+      const document = Documents.deleteDocument(query.id);
       res.status(200).send(document);
     } catch (error) {
       res.status(500).send({
