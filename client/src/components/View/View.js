@@ -7,6 +7,9 @@ import CenterHorizontally from '../Layout/CenterHorizontaly/CenterHorizontaly';
 import Tooltip from '../Layout/Tooltip/Tooltip';
 import MediaRouter from './Clients/MediaRouter';
 
+// import Edit from '../Edit/Edit';
+import Delete from '../Layout/Delete/Delete';
+
 const view = props => {
     let URI = props.location.pathname.split('/')[2]
     return (
@@ -19,6 +22,10 @@ const view = props => {
                         data => {
                             return (
                                 <Fragment>
+                                    <div className='float-right'>
+                                        <Delete path={`/api/v1/document?id=${URI}`} />
+                                        {/* <Edit path={`/document/edit/${URI}`} /> */}
+                                    </div>
                                     <h1 className="text-center my-2">
                                         {data.payload.title}
                                     </h1>
@@ -34,7 +41,7 @@ const view = props => {
                                                 />
                                                 <CenterHorizontally>
                                                     <Tooltip
-                                                        body="Click to share with clients"
+                                                        body="Share the url with clients"
                                                         url={`view/${file._id}`}
                                                     />
                                                 </CenterHorizontally>

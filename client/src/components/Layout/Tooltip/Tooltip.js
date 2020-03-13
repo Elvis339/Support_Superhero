@@ -13,7 +13,7 @@ const tooltip = props => (
             }
         >
             <Link className='btn btn-primary mt-2 mb-5' to={props.url}>
-                Check it out
+                Share the file
             </Link>
         </OverlayTrigger>{' '}
     </Fragment>
