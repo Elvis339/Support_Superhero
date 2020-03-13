@@ -7,7 +7,7 @@ import CenterHorizontally from '../Layout/CenterHorizontaly/CenterHorizontaly';
 import Tooltip from '../Layout/Tooltip/Tooltip';
 import MediaRouter from './Clients/MediaRouter';
 
-import Edit from '../Edit/Edit';
+// import Edit from '../Edit/Edit';
 import Delete from '../Layout/Delete/Delete';
 
 const view = props => {
@@ -24,7 +24,7 @@ const view = props => {
                                 <Fragment>
                                     <div className='float-right'>
                                         <Delete path={`/api/v1/document?id=${URI}`} />
-                                        <Edit path={`/document/edit/${URI}`} />
+                                        {/* <Edit path={`/document/edit/${URI}`} /> */}
                                     </div>
                                     <h1 className="text-center my-2">
                                         {data.payload.title}

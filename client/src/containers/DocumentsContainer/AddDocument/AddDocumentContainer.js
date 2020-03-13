@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import Editor from '../../EditorContainer/EditorContainer';
-import AddDocument from '../../../components/Document/AddDocument';
+import FormDocument from '../../../components/Document/FormDocument';
 import CenterHorizontaly from '../../../components/Layout/CenterHorizontaly/CenterHorizontaly';
 import { Alert, ProgressBar } from 'react-bootstrap';
 
@@ -93,7 +93,7 @@ class AddDocumentContainer extends Component {
 
     render() {
         return (
-            <AddDocument
+            <FormDocument
                 saveToDB={e => this.saveToDB(e)}
                 change={e => this.handleChangeInForm(e)}
                 onFileChange={e => this.onFileChange(e)}
@@ -111,7 +111,7 @@ class AddDocumentContainer extends Component {
                     </CenterHorizontaly>
                 </Fragment> : null}
                 {this.state.status ? <Alert variant='success'>{this.state.status}</Alert> : null}
-            </AddDocument>
+            </FormDocument>
         )
     }
 }
