@@ -15,7 +15,7 @@ module.exports = {
     }
     return `${require.main.filename
       .split('/')
-      .filter((elem) => elem !== dirname && elem !== 'app-cli.js')
+      .filter((elem) => elem !== dirname && elem !== 'app-cli.js' && elem !== 'index.js')
       .join('/')}/`;
   },
 
